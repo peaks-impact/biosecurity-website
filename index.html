@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zurich Biosecurity Hub</title>
+<meta name="description" content="Lectures, an intensive course and a reading group in Zürich for people who want to work on preventing catastrophic pandemics. Autumn semester 2026 at ETH Zürich.">
+<meta name="theme-color" content="#12333B">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zurichbiosecurity.ch/">
+<meta property="og:site_name" content="Zurich Biosecurity Hub">
+<meta property="og:title" content="Zurich Biosecurity Hub">
+<meta property="og:description" content="Lectures, an intensive course and a reading group in Zürich for people who want to work on preventing catastrophic pandemics.">
+<meta property="og:image" content="https://zurichbiosecurity.ch/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===========================================================
+   Zurich Biosecurity Hub
+   Built to the brand kit v1.0:
+   petrol #12333B / warm off-white #F4F1EA / burnt orange #C8552A
+   / muted slate #6E8C93. IBM Plex Sans, IBM Plex Mono for data.
+   8px spacing base. Hairlines, no shadows, no radii, no gradients.
+   =========================================================== */
+
+:root {
+  --petrol: #12333B;
+  --paper: #F4F1EA;
+  --orange: #C8552A;
+  --slate: #6E8C93;
+  --rule: rgba(110, 140, 147, 0.35);
+  --rule-reverse: rgba(244, 241, 234, 0.18);
+
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 40px;
+  --s5: 64px;
+  --s6: 104px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { color-scheme: light; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--petrol);
+  font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+.muted { color: var(--slate); }
+
+p { margin: 0 0 var(--s3); max-width: 70ch; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--petrol); text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 3px; }
+a:hover { color: var(--orange); }
+
+h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
+
+.wrap { width: 100%; max-width: 1308px; margin: 0 auto; padding: 0 var(--s5); }
+
+.skip {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--petrol); color: var(--paper);
+  padding: var(--s2) var(--s3); text-decoration: none; z-index: 20;
+}
+.skip:focus { left: 0; color: var(--paper); }
+
+.eyebrow {
+  margin: 0 0 var(--s3);
+  font-size: 13px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--slate);
+}
+
+/* ---------- logo lockup ---------- */
+.lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--petrol); }
+.lockup:hover { color: var(--petrol); }
+.lockup__mark { width: 22px; height: 22px; flex: none; display: block; color: currentColor; }
+.lockup__type { font-size: 15px; font-weight: 500; letter-spacing: 0.01em; text-transform: uppercase; line-height: 1.2; }
+.lockup--reverse, .lockup--reverse:hover { color: var(--paper); }
+.lockup--reverse .lockup__mark { width: 34px; height: 34px; }
+
+/* ---------- header ---------- */
+.header {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+.header__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s4); padding-top: var(--s2); padding-bottom: var(--s2);
+}
+.nav { display: flex; align-items: center; gap: var(--s3); font-size: 14px; }
+.nav a { text-decoration: none; }
+.nav a:not(.btn):hover { color: var(--orange); }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 13px 22px;
+  font-size: 15px; font-weight: 500; letter-spacing: 0.04em;
+  text-decoration: none; border: 1px solid transparent;
+  white-space: nowrap;
+}
+.btn--primary { background: var(--orange); color: var(--paper); }
+.btn--primary:hover { background: var(--petrol); color: var(--paper); }
+.btn--ghost { border-color: var(--petrol); color: var(--petrol); }
+.btn--ghost:hover { background: var(--petrol); color: var(--paper); }
+.btn--small { padding: 9px 16px; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ---------- hero ---------- */
+.hero { padding-top: var(--s6); }
+.hero__grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) 240px;
+  gap: var(--s5); align-items: start;
+}
+.hero h1 {
+  font-size: clamp(36px, 5.2vw, 56px);
+  line-height: 1.04; letter-spacing: -0.03em;
+  max-width: 22ch;
+}
+.hero .lede {
+  margin-top: var(--s3);
+  font-size: 26px; line-height: 1.25; letter-spacing: -0.015em;
+  max-width: 40ch;
+}
+.hero p:not(.eyebrow):not(.lede):not(.hero__cta) { margin-top: var(--s3); }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--s4); }
+.hero__mark { width: 240px; height: 240px; display: block; color: var(--slate); opacity: 0.5; }
+.hero__rule { height: 2px; background: var(--petrol); margin-top: var(--s6); }
+
+/* ---------- sections ---------- */
+.section { padding-top: var(--s5); padding-bottom: var(--s5); }
+.section--first { padding-top: var(--s5); }
+.sec-head {
+  display: flex; align-items: baseline; gap: 14px;
+  margin-bottom: var(--s3);
+}
+.sec-num { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); }
+.sec-head h2 { font-size: 26px; letter-spacing: -0.02em; }
+.meta { font-size: 14px; color: var(--slate); }
+.note { font-size: 16px; color: var(--slate); max-width: 70ch; }
+
+/* ---------- overview ---------- */
+.overview { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); }
+.overview__item { border-top: 1px solid var(--rule); padding-top: var(--s2); }
+.overview__label { margin: 0 0 var(--s2); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); }
+.overview__item h3 { font-size: 20px; letter-spacing: -0.01em; margin-bottom: var(--s1); }
+.overview__item h3 a { text-decoration: none; }
+.overview__item p:last-child { font-size: 16px; color: var(--petrol); opacity: 0.85; }
+
+/* ---------- session list ---------- */
+.sessions { margin-top: var(--s4); border-bottom: 1px solid var(--rule); }
+.session {
+  display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: var(--s3);
+  padding: var(--s3) 0; border-top: 1px solid var(--rule);
+}
+.session__when { margin: 0; font-size: 14px; color: var(--slate); }
+.session__idx { display: block; margin-bottom: var(--s1); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; color: var(--slate); }
+.session__title { font-size: 20px; letter-spacing: -0.01em; margin-bottom: var(--s1); }
+.session__desc { font-size: 16px; margin: 0; }
+
+/* ---------- fact lists ---------- */
+.facts { margin: var(--s4) 0 var(--s3); border-bottom: 1px solid var(--rule); }
+.fact {
+  display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: var(--s3);
+  padding: var(--s2) 0; border-top: 1px solid var(--rule);
+}
+.fact dt { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); }
+.fact dd { margin: 0; font-size: 17px; }
+.facts--tight { margin-top: var(--s3); }
+
+/* ---------- two columns ---------- */
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5); }
+
+/* ---------- petrol band ---------- */
+.band { background: var(--petrol); color: var(--paper); padding: var(--s6) 0; overflow: hidden; }
+.band__grid { display: grid; grid-template-columns: minmax(0, 1fr) 180px; gap: var(--s5); align-items: center; }
+.band h2 { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.08; letter-spacing: -0.03em; max-width: 24ch; margin-bottom: var(--s3); }
+.band p { color: var(--paper); }
+.band a:not(.btn) { color: var(--paper); text-decoration-color: var(--orange); }
+.band a:not(.btn):hover { color: var(--slate); }
+.band__cta { margin-top: var(--s4); }
+.band__mark { width: 180px; height: 180px; display: block; color: var(--slate); opacity: 0.6; }
+
+/* ---------- footer ---------- */
+.footer { background: var(--petrol); color: var(--paper); padding: var(--s5) 0; font-size: 14px; border-top: 1px solid var(--rule-reverse); }
+.footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: var(--s4); align-items: start; }
+.footer__label { margin: 0 0 var(--s2); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); }
+.footer__note { margin-top: var(--s2); color: var(--slate); font-size: 13px; max-width: 42ch; }
+.footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--s1); }
+.footer a { color: var(--paper); text-decoration: none; }
+.footer a:hover { color: var(--slate); }
+.footer .lockup { margin-bottom: var(--s2); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1000px) {
+  .hero__grid { grid-template-columns: minmax(0, 1fr); }
+  .hero__mark { display: none; }
+  .band__grid { grid-template-columns: minmax(0, 1fr); }
+  .band__mark { display: none; }
+  .overview { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3); }
+  .cols { grid-template-columns: minmax(0, 1fr); gap: var(--s4); }
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 760px) {
+  .wrap { padding: 0 var(--s4); }
+  .nav a:not(.btn) { display: none; }
+  .hero { padding-top: var(--s4); }
+  .hero .lede { font-size: 22px; }
+  .hero__rule { margin-top: var(--s4); }
+  .section { padding-top: var(--s4); padding-bottom: var(--s4); }
+  .band { padding: var(--s5) 0; }
+  .overview { grid-template-columns: minmax(0, 1fr); }
+  .session, .fact { grid-template-columns: minmax(0, 1fr); gap: var(--s1); }
+  .session__when { display: flex; align-items: baseline; gap: 12px; }
+  .session__idx { margin-bottom: 0; }
+  .footer__grid { grid-template-columns: minmax(0, 1fr); gap: var(--s3); }
+}
+
+@media (max-width: 480px) {
+  .wrap { padding: 0 var(--s3); }
+  .btn { width: 100%; text-align: center; }
+  .btn--small { width: auto; }
+}
+</style>
+</head>
+<body id="top">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="mark" viewBox="0 0 100 100">
+    <path d="M13 100 L13 13 H87 V100" fill="none" stroke="currentColor" stroke-width="14"/>
+    <path d="M38 100 L38 38 H62 V100" fill="none" stroke="currentColor" stroke-width="12"/>
+  </symbol>
+  <symbol id="mark-accent" viewBox="0 0 100 100">
+    <path d="M13 100 L13 13 H87 V100" fill="none" stroke="currentColor" stroke-width="14"/>
+    <path d="M38 100 L38 38 H62 V100" fill="none" stroke="#C8552A" stroke-width="12"/>
+  </symbol>
+  <symbol id="mark-hairline" viewBox="0 0 100 100">
+    <path d="M13 100 L13 13 H87 V100" fill="none" stroke="currentColor" stroke-width="6"/>
+    <path d="M38 100 L38 38 H62 V100" fill="none" stroke="currentColor" stroke-width="6"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="header">
+  <div class="wrap header__inner">
+    <a class="lockup" href="#top">
+      <svg class="lockup__mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="lockup__type">Zurich Biosecurity&nbsp;Hub</span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#lectures">Lecture series</a>
+      <a href="#course">Intensive course</a>
+      <a href="#reading">Reading group</a>
+      <a href="#about">About</a>
+      <a class="btn btn--primary btn--small" href="#involved">Get involved</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="eyebrow">ETH Zürich · Autumn semester 2026</p>
+        <h1>Preparedness is a technical discipline.</h1>
+        <p class="lede">The Zurich Biosecurity Hub runs lectures, a course and a reading group for people who want to work on preventing the worst pandemics.</p>
+        <p>Most of the work that reduces catastrophic biological risk — screening synthetic DNA orders, disinfecting indoor air, evaluating what AI systems make possible in a lab, writing the governance for any of it — is limited by the number of people doing it rather than by a shortage of open problems. The fellowships and research groups in the field are oversubscribed with qualified applicants. Our programmes exist to get more people to the point where they can compete for those places, and be useful once they are there.</p>
+        <p class="hero__cta">
+          <a class="btn btn--primary" href="#lectures">Sessions and dates</a>
+          <a class="btn btn--ghost" href="#course">Intensive course</a>
+        </p>
+      </div>
+      <svg class="hero__mark" aria-hidden="true"><use href="#mark-hairline"/></svg>
+    </div>
+    <div class="wrap"><div class="hero__rule"></div></div>
+  </section>
+
+  <!-- ============ OVERVIEW ============ -->
+  <section class="section section--first">
+    <div class="wrap">
+      <div class="overview">
+        <div class="overview__item">
+          <p class="overview__label">Autumn 2026</p>
+          <h3><a href="#lectures">Lecture series</a></h3>
+          <p>Five standalone evening sessions at ETH Zürich. Open to everyone, no prior knowledge assumed.</p>
+        </div>
+        <div class="overview__item">
+          <p class="overview__label">December 2026</p>
+          <h3><a href="#course">Intensive course</a></h3>
+          <p>Six days of reading and facilitated discussion for eight to ten participants. Application only.</p>
+        </div>
+        <div class="overview__item">
+          <p class="overview__label">From early 2027</p>
+          <h3><a href="#reading">Paper reading group</a></h3>
+          <p>One paper, read in advance, discussed in person. Runs through the ETH exam session.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LECTURE SERIES ============ -->
+  <section class="section" id="lectures">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">01</span>
+        <h2>Preventing the Next Pandemic</h2>
+      </div>
+      <p>A five-part lecture series on global catastrophic biological risk. Each session stands on its own — none builds on another, and none assumes a background in biology. Come to one or come to all five.</p>
+      <p class="meta"><span class="mono">18:15&ndash;19:45</span> · ETH Zürich, room to be announced · Free, no registration</p>
+
+      <div class="sessions">
+        <article class="session">
+          <p class="session__when"><span class="session__idx">01</span><span class="mono">Wed 30 Sep 2026</span></p>
+          <div>
+            <h3 class="session__title">The Deliberate Pandemic</h3>
+            <p class="session__desc">Preparedness usually assumes nature is the adversary. What changes when a pathogen is engineered on purpose: which capabilities that requires, who plausibly has them, and why deliberate outbreaks sit at the far tail of the risk distribution.</p>
+          </div>
+        </article>
+        <article class="session">
+          <p class="session__when"><span class="session__idx">02</span><span class="mono">Mon 12 Oct 2026</span></p>
+          <div>
+            <h3 class="session__title">When AI Meets the Lab</h3>
+            <p class="session__desc">Protein design tools and large language models are changing what a small group can do at the bench. What the evidence on uplift actually shows, how frontier models are evaluated for biological capability, and which safeguards exist at the interface between the two fields.</p>
+          </div>
+        </article>
+        <article class="session">
+          <p class="session__when"><span class="session__idx">03</span><span class="mono">Wed 28 Oct 2026</span></p>
+          <div>
+            <h3 class="session__title">Mirror Life</h3>
+            <p class="session__desc">Organisms built from mirror-image molecules would be largely invisible to existing immune defences. Why a group of researchers concluded that mirror bacteria should not be built, and what it takes to stop a technology before it exists.</p>
+          </div>
+        </article>
+        <article class="session">
+          <p class="session__when"><span class="session__idx">04</span><span class="mono">Wed 11 Nov 2026</span></p>
+          <div>
+            <h3 class="session__title">Cutting Transmission</h3>
+            <p class="session__desc">Countermeasures that work without knowing which pathogen arrives: respirators and fit testing, indoor air quality, far-UVC. The engineering, the cost, and the open questions — rather than the vaccine-centred picture of preparedness.</p>
+          </div>
+        </article>
+        <article class="session">
+          <p class="session__when"><span class="session__idx">05</span><span class="mono">Wed 2 Dec 2026</span></p>
+          <div>
+            <h3 class="session__title">Defence in Depth</h3>
+            <p class="session__desc">Prevention, detection and response as layers: nucleic-acid synthesis screening, metagenomic surveillance, the Biological Weapons Convention. Where the layers are thin, and where the work is.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTENSIVE COURSE ============ -->
+  <section class="section" id="course">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">02</span>
+        <h2>Intensive course</h2>
+      </div>
+      <p>Six days covering the field in sequence: one unit per day, two to three hours of reading on your own, then two hours of facilitated discussion with the group. Small by design — the point is that everyone has read the material and everyone talks.</p>
+
+      <dl class="facts">
+        <div class="fact">
+          <dt>Dates</dt>
+          <dd><span class="mono">Mon 7 &ndash; Sat 12 December 2026</span><br><span class="muted">Monday to Friday <span class="mono">18:00&ndash;20:00</span>, Saturday <span class="mono">15:00&ndash;17:00</span> followed by dinner.</span></dd>
+        </div>
+        <div class="fact">
+          <dt>Location</dt>
+          <dd>PEAKS Office, Bern</dd>
+        </div>
+        <div class="fact">
+          <dt>Places</dt>
+          <dd>Eight to ten participants, by application</dd>
+        </div>
+        <div class="fact">
+          <dt>Curriculum</dt>
+          <dd>Adapted from the BlueDot Impact biosecurity course, six units</dd>
+        </div>
+        <div class="fact">
+          <dt>Commitment</dt>
+          <dd>Roughly five hours a day for six days, reading included</dd>
+        </div>
+      </dl>
+
+      <p class="note">Applications are not open yet. Write to us to be told when they are, or if a run in early March 2027 would suit you better — we are considering a second date.</p>
+      <p><a class="btn btn--primary" href="mailto:erik@effectivealtruism.ch?subject=Intensive%20course%20%E2%80%94%20Zurich%20Biosecurity%20Hub">Register your interest</a></p>
+    </div>
+  </section>
+
+  <!-- ============ READING GROUP ============ -->
+  <section class="section" id="reading">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">03</span>
+        <h2>Paper reading group</h2>
+      </div>
+      <p>A biosecurity paper reading group has been running in Zürich for about a year, organised by doctoral researchers. It resumes after the lecture series and continues through the ETH exam session in late January and February 2027, when nothing else is on.</p>
+      <p>One paper per session, circulated in advance, discussed in person. Dates and the reading list will be posted here.</p>
+    </div>
+  </section>
+
+  <!-- ============ BAND: WHO THIS IS FOR ============ -->
+  <section class="band" id="involved">
+    <div class="wrap band__grid">
+      <div>
+        <p class="eyebrow">Who this is for</p>
+        <h2>If you are considering working on this seriously, write to us.</h2>
+        <p>Students and doctoral researchers at ETH Zürich, UZH and elsewhere in the region — biology, chemistry, computer science, medicine, engineering — and people already working on policy who want the technical picture. The lectures assume nothing. The course assumes you will do the reading.</p>
+        <p>We are not trying to fill a lecture hall. We are trying to find the few people who would go on to do this work, and to be useful to them: pointing at fellowships, reading their applications, making introductions. An email is enough to start.</p>
+        <p class="band__cta">
+          <a class="btn btn--primary" href="mailto:erik@effectivealtruism.ch?subject=Zurich%20Biosecurity%20Hub">erik@effectivealtruism.ch</a>
+        </p>
+      </div>
+      <svg class="band__mark" aria-hidden="true"><use href="#mark-hairline"/></svg>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">04</span>
+        <h2>About the Hub</h2>
+      </div>
+      <div class="cols">
+        <div>
+          <p>The Zurich Biosecurity Hub is a new initiative building a route into biosecurity work from Switzerland. It teaches the field — engineered pandemics, the intersection of AI and biology, synthesis screening, transmission suppression, and the governance around all of it — and then helps the people who come through those programmes reach the research groups, fellowships and institutions where the work is done.</p>
+          <p>Switzerland is unusually well placed for this and has no organisation dedicated to it. ETH, EPFL and UZH are among Europe's strongest technical universities; Basel is the continent's largest life-sciences cluster; Geneva hosts much of the international machinery for biosecurity governance, including the WHO and the Biological Weapons Convention. What is missing is the connective work between them.</p>
+        </div>
+        <div>
+          <p>The Hub is led by Dr. Erik Jentzen, a physician working at Effective Altruism Switzerland (EACH), which hosts the project's administration and finances. The Hub operates under its own name.</p>
+          <dl class="facts facts--tight">
+            <div class="fact">
+              <dt>Contact</dt>
+              <dd><a href="mailto:erik@effectivealtruism.ch">erik@effectivealtruism.ch</a></dd>
+            </div>
+            <div class="fact">
+              <dt>Based in</dt>
+              <dd>Zürich, Switzerland</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <a class="lockup lockup--reverse" href="#top">
+        <svg class="lockup__mark" aria-hidden="true"><use href="#mark-accent"/></svg>
+        <span class="lockup__type">Zurich Biosecurity&nbsp;Hub</span>
+      </a>
+      <p class="footer__note">Teaching programmes on global catastrophic biological risk, based in Zürich.</p>
+    </div>
+    <div>
+      <p class="footer__label">Programmes</p>
+      <ul>
+        <li><a href="#lectures">Lecture series</a></li>
+        <li><a href="#course">Intensive course</a></li>
+        <li><a href="#reading">Reading group</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer__label">Contact</p>
+      <ul>
+        <li><a href="mailto:erik@effectivealtruism.ch">erik@effectivealtruism.ch</a></li>
+      </ul>
+      <p class="footer__note">Hosted by Effective Altruism Switzerland (EACH).</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
