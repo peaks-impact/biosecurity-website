@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zurich Biosecurity Hub</title>
-<meta name="description" content="Lectures, an intensive course and a reading group in Zürich for people who want to work on preventing catastrophic pandemics. Autumn semester 2026 at ETH Zürich.">
+<meta name="description" content="Lectures and workshops, a fellowship, a paper reading group and career advising in Zürich, on the biological risks that could cause harm at a global scale.">
 <meta name="theme-color" content="#12333B">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://zurichbiosecurity.ch/">
 <meta property="og:site_name" content="Zurich Biosecurity Hub">
 <meta property="og:title" content="Zurich Biosecurity Hub">
-<meta property="og:description" content="Lectures, an intensive course and a reading group in Zürich for people who want to work on preventing catastrophic pandemics.">
+<meta property="og:description" content="We want more people in Switzerland working on the biological risks that could cause harm at a global scale.">
 <meta property="og:image" content="https://zurichbiosecurity.ch/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,10 +20,22 @@
 <style>
 /* ===========================================================
    Zurich Biosecurity Hub
-   Built to the brand kit v1.0:
-   petrol #12333B / warm off-white #F4F1EA / burnt orange #C8552A
-   / muted slate #6E8C93. IBM Plex Sans, IBM Plex Mono for data.
-   8px spacing base. Hairlines, no shadows, no radii, no gradients.
+
+   Brand kit v1.0: petrol #12333B / warm off-white #F4F1EA /
+   burnt orange #C8552A (calls to action only) / muted slate #6E8C93.
+   IBM Plex Sans, IBM Plex Mono for dates and sources. 8px spacing.
+
+   Agreed departures from the kit:
+   1. Rounded corners on cards, panels, buttons and programme marks
+      (--r / --r-sm). The kit calls for radius 0.
+   2. Secondary running text (notes, sources, meta lines) is petrol at 70%
+      rather than slate: slate on a light field is only 3.2:1. Slate is kept
+      for the uppercase micro-labels.
+   The logo is never rounded or altered.
+
+   Fields alternate per section, starting dark: petrol (header, mission),
+   paper (what we offer), petrol (why this matters), paper (events),
+   petrol (programmes), paper (team), petrol (contact, footer).
    =========================================================== */
 
 :root {
@@ -32,7 +44,9 @@
   --orange: #C8552A;
   --slate: #6E8C93;
   --rule: rgba(110, 140, 147, 0.35);
-  --rule-reverse: rgba(244, 241, 234, 0.18);
+
+  --r: 14px;
+  --r-sm: 8px;
 
   --s1: 8px;
   --s2: 16px;
@@ -53,16 +67,14 @@ body {
   color: var(--petrol);
   font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 17px;
-  font-weight: 400;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-.mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
-.muted { color: var(--slate); }
+.mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
 
-p { margin: 0 0 var(--s3); max-width: 70ch; }
+p { margin: 0 0 var(--s3); max-width: 68ch; }
 p:last-child { margin-bottom: 0; }
 
 a { color: var(--petrol); text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 3px; }
@@ -70,14 +82,14 @@ a:hover { color: var(--orange); }
 
 h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
 
-.wrap { width: 100%; max-width: 1308px; margin: 0 auto; padding: 0 var(--s5); }
+.wrap { position: relative; width: 100%; max-width: 1308px; margin: 0 auto; padding: 0 var(--s5); }
 
 .skip {
   position: absolute; left: -9999px; top: 0;
-  background: var(--petrol); color: var(--paper);
+  background: var(--paper); color: var(--petrol);
   padding: var(--s2) var(--s3); text-decoration: none; z-index: 20;
 }
-.skip:focus { left: 0; color: var(--paper); }
+.skip:focus { left: 0; }
 
 .eyebrow {
   margin: 0 0 var(--s3);
@@ -85,20 +97,33 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
   text-transform: uppercase; color: var(--slate);
 }
 
+/* ---------- fields ---------- */
+.field--dark {
+  --rule: rgba(244, 241, 234, 0.18);
+  background: var(--petrol);
+  color: var(--paper);
+}
+.field--dark h1, .field--dark h2, .field--dark h3 { color: var(--paper); }
+.field--dark .eyebrow, .field--dark .sec-num { color: var(--paper); opacity: 0.65; }
+.field--dark .meta, .field--dark .note { color: var(--paper); opacity: 0.75; }
+/* the programme marks are opaque petrol tiles, so on a petrol field only the
+   glyph shows; a hairline keeps the tile shape readable */
+.field--dark .prog__mark, .field--dark .offer__mark { box-shadow: 0 0 0 1px rgba(244,241,234,0.22); }
+.field--dark a:not(.btn) { color: var(--paper); text-decoration-color: var(--orange); }
+.field--dark .btn--ghost { border-color: var(--paper); color: var(--paper); }
+.field--dark .btn--ghost:hover { background: var(--paper); color: var(--petrol); }
+.field--dark .btn--primary:hover { background: var(--paper); color: var(--petrol); }
+
 /* ---------- logo lockup ---------- */
 .lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--petrol); }
 .lockup:hover { color: var(--petrol); }
-.lockup__mark { width: 22px; height: 22px; flex: none; display: block; color: currentColor; }
+.lockup__mark { width: 22px; height: 22px; flex: none; display: block; }
 .lockup__type { font-size: 15px; font-weight: 500; letter-spacing: 0.01em; text-transform: uppercase; line-height: 1.2; }
-.lockup--reverse, .lockup--reverse:hover { color: var(--paper); }
-.lockup--reverse .lockup__mark { width: 34px; height: 34px; }
+.field--dark .lockup, .field--dark .lockup:hover { color: var(--paper); }
+.footer .lockup__mark { width: 34px; height: 34px; }
 
 /* ---------- header ---------- */
-.header {
-  position: sticky; top: 0; z-index: 10;
-  background: var(--paper);
-  border-bottom: 1px solid var(--rule);
-}
+.header { position: sticky; top: 0; z-index: 10; border-bottom: 1px solid var(--rule); }
 .header__inner {
   display: flex; align-items: center; justify-content: space-between;
   gap: var(--s4); padding-top: var(--s2); padding-bottom: var(--s2);
@@ -106,12 +131,14 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
 .nav { display: flex; align-items: center; gap: var(--s3); font-size: 14px; }
 .nav a { text-decoration: none; }
 .nav a:not(.btn):hover { color: var(--orange); }
+/* orange on petrol is only 3.1:1, so on a dark field the hover is an underline */
+.field--dark .nav a:not(.btn):hover { color: var(--paper); text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 3px; }
 
 /* ---------- buttons ---------- */
 .btn {
   display: inline-block;
-  padding: 13px 22px;
-  font-size: 15px; font-weight: 500; letter-spacing: 0.04em;
+  padding: 13px 22px; border-radius: var(--r-sm);
+  font-size: 15px; font-weight: 500; letter-spacing: 0.02em;
   text-decoration: none; border: 1px solid transparent;
   white-space: nowrap;
 }
@@ -121,117 +148,132 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
 .btn--ghost:hover { background: var(--petrol); color: var(--paper); }
 .btn--small { padding: 9px 16px; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; }
 
-/* ---------- hero ---------- */
-.hero { padding-top: var(--s6); }
-.hero__grid {
-  display: grid; grid-template-columns: minmax(0, 1fr) 240px;
-  gap: var(--s5); align-items: start;
-}
-.hero h1 {
-  font-size: clamp(36px, 5.2vw, 56px);
-  line-height: 1.04; letter-spacing: -0.03em;
-  max-width: 22ch;
-}
-.hero .lede {
-  margin-top: var(--s3);
-  font-size: 26px; line-height: 1.25; letter-spacing: -0.015em;
-  max-width: 40ch;
-}
-.hero p:not(.eyebrow):not(.lede):not(.hero__cta) { margin-top: var(--s3); }
-.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--s4); }
-.hero__mark { width: 240px; height: 240px; display: block; color: var(--slate); opacity: 0.5; }
-.hero__rule { height: 2px; background: var(--petrol); margin-top: var(--s6); }
-
 /* ---------- sections ---------- */
 .section { padding-top: var(--s5); padding-bottom: var(--s5); }
-.section--first { padding-top: var(--s5); }
-.sec-head {
-  display: flex; align-items: baseline; gap: 14px;
-  margin-bottom: var(--s3);
-}
+.sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: var(--s3); }
+.sec-head h2 { font-size: 26px; }
 .sec-num { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); }
-.sec-head h2 { font-size: 26px; letter-spacing: -0.02em; }
-.meta { font-size: 14px; color: var(--slate); }
-.note { font-size: 16px; color: var(--slate); max-width: 70ch; }
+.meta, .note { color: var(--petrol); opacity: 0.7; }
+.meta { font-size: 14px; }
+.note { font-size: 15px; max-width: 68ch; }
 
-/* ---------- overview ---------- */
-.overview { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); }
-.overview__item { border-top: 1px solid var(--rule); padding-top: var(--s2); }
-.overview__label { margin: 0 0 var(--s2); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); }
-.overview__item h3 { font-size: 20px; letter-spacing: -0.01em; margin-bottom: var(--s1); }
-.overview__item h3 a { text-decoration: none; }
-.overview__item p:last-child { font-size: 16px; color: var(--petrol); opacity: 0.85; }
-
-/* ---------- session list ---------- */
-.sessions { margin-top: var(--s4); border-bottom: 1px solid var(--rule); }
-.session {
-  display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: var(--s3);
-  padding: var(--s3) 0; border-top: 1px solid var(--rule);
+/* ---------- mission, the dark opening block ---------- */
+.mission { padding-top: var(--s6); padding-bottom: var(--s6); }
+.mission__grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: var(--s5); align-items: center; }
+.mission h1 { font-size: 26px; margin-bottom: var(--s4); }
+.mission__lead {
+  font-size: clamp(26px, 3.4vw, 36px); font-weight: 500;
+  line-height: 1.18; letter-spacing: -0.025em;
+  max-width: 30ch; margin-bottom: var(--s4);
 }
-.session__when { margin: 0; font-size: 14px; color: var(--slate); }
-.session__idx { display: block; margin-bottom: var(--s1); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; color: var(--slate); }
-.session__title { font-size: 20px; letter-spacing: -0.01em; margin-bottom: var(--s1); }
-.session__desc { font-size: 16px; margin: 0; }
+.mission__body { max-width: 62ch; }
+.mission__body p { opacity: 0.85; }
+.mission__mark { width: 100%; max-width: 240px; height: auto; display: block; margin: 0 auto; color: var(--paper); }
 
-/* ---------- fact lists ---------- */
-.facts { margin: var(--s4) 0 var(--s3); border-bottom: 1px solid var(--rule); }
-.fact {
-  display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: var(--s3);
-  padding: var(--s2) 0; border-top: 1px solid var(--rule);
+/* ---------- what we offer ---------- */
+.panel { border: 1px solid var(--rule); border-radius: var(--r); padding: var(--s4); }
+.offer { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: var(--s3); align-items: start; padding: var(--s3) 0; border-top: 1px solid var(--rule); }
+.offer:first-child { border-top: 0; padding-top: 0; }
+.offer:last-child { padding-bottom: 0; }
+.offer__mark { width: 56px; height: 56px; border-radius: 12px; display: block; }
+.offer h3 { font-size: 19px; letter-spacing: -0.01em; margin-bottom: 4px; }
+.offer p { margin: 0; font-size: 16px; }
+.offer__jump { font-size: 14px; font-weight: 500; white-space: nowrap; padding-top: 2px; }
+
+/* ---------- numbers ---------- */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s3); }
+.stat {
+  background: var(--paper); color: var(--petrol);
+  border: 1px solid var(--rule); border-radius: var(--r);
+  padding: var(--s3); display: flex; flex-direction: column;
 }
-.fact dt { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); }
-.fact dd { margin: 0; font-size: 17px; }
-.facts--tight { margin-top: var(--s3); }
+.field--dark .stat { --rule: rgba(110, 140, 147, 0.35); }
+.stat__value { font-size: 38px; font-weight: 600; line-height: 1.02; letter-spacing: -0.03em; }
+.stat__label { margin: var(--s2) 0 var(--s3); font-size: 15px; line-height: 1.45; }
+.stat__src { margin: auto 0 0; padding-top: var(--s2); border-top: 1px solid var(--rule); font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; opacity: 0.7; }
+/* the stat cards are always a light card, including inside a dark field, so the
+   link colour has to beat the .field--dark link rule */
+.stat__src a, .field--dark .stat__src a { color: var(--petrol); text-decoration-color: var(--rule); }
+.stat__src a:hover, .field--dark .stat__src a:hover { color: var(--orange); }
 
-/* ---------- two columns ---------- */
-.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5); }
+/* ---------- events ---------- */
+.embed {
+  margin-top: var(--s3); max-width: 760px;
+  border: 1px solid var(--rule); border-radius: var(--r);
+  background: var(--paper); overflow: hidden;
+}
+.embed iframe { display: block; width: 100%; height: 540px; border: 0; }
+.dates { border-top: 1px solid var(--rule); }
+.dates__row { display: grid; grid-template-columns: 230px minmax(0, 1fr) 200px; gap: var(--s3); padding: var(--s2) 0; border-bottom: 1px solid var(--rule); }
+.dates__when { font-family: 'IBM Plex Mono', monospace; font-size: 14px; opacity: 0.75; }
+.dates__title { font-weight: 500; }
+.dates__where { font-size: 14px; opacity: 0.7; }
 
-/* ---------- petrol band ---------- */
-.band { background: var(--petrol); color: var(--paper); padding: var(--s6) 0; overflow: hidden; }
-.band__grid { display: grid; grid-template-columns: minmax(0, 1fr) 180px; gap: var(--s5); align-items: center; }
-.band h2 { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.08; letter-spacing: -0.03em; max-width: 24ch; margin-bottom: var(--s3); }
-.band p { color: var(--paper); }
-.band a:not(.btn) { color: var(--paper); text-decoration-color: var(--orange); }
-.band a:not(.btn):hover { color: var(--slate); }
+/* ---------- programmes ---------- */
+.prog { border-top: 1px solid var(--rule); padding-top: var(--s4); margin-top: var(--s4); }
+.prog:first-of-type { border-top: 0; padding-top: 0; margin-top: var(--s3); }
+.prog__head { display: flex; align-items: center; gap: var(--s2); margin-bottom: var(--s3); }
+.prog__mark { width: 48px; height: 48px; border-radius: 12px; display: block; flex: none; }
+.prog h3 { font-size: 22px; }
+.sessions { margin-top: var(--s3); max-width: 720px; border-top: 1px solid var(--rule); }
+.session { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: var(--s3); padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.session__when { font-family: 'IBM Plex Mono', monospace; font-size: 14px; opacity: 0.75; }
+.session__title { font-size: 17px; font-weight: 500; }
+
+/* ---------- team ---------- */
+.team { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); max-width: 900px; }
+.member { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--s3); align-items: center; padding: var(--s3) 0; border-bottom: 1px solid var(--rule); }
+.member__photo { width: 56px; height: 56px; border-radius: 50%; display: block; object-fit: cover; }
+.member__name { margin: 0; font-weight: 600; }
+.member__role { margin: 2px 0 0; font-size: 15px; opacity: 0.75; }
+.member__link { margin: 0; font-size: 14px; white-space: nowrap; }
+
+/* ---------- closing contact ---------- */
+.band { padding: var(--s6) 0; }
+.band__grid { display: grid; grid-template-columns: minmax(0, 1fr) 200px; gap: var(--s5); align-items: center; }
+.band h2 { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.08; letter-spacing: -0.03em; max-width: 22ch; margin-bottom: var(--s3); }
+.band p { opacity: 0.9; }
 .band__cta { margin-top: var(--s4); }
-.band__mark { width: 180px; height: 180px; display: block; color: var(--slate); opacity: 0.6; }
+.band__mark { width: 200px; height: 200px; display: block; color: var(--paper); opacity: 0.32; }
 
 /* ---------- footer ---------- */
-.footer { background: var(--petrol); color: var(--paper); padding: var(--s5) 0; font-size: 14px; border-top: 1px solid var(--rule-reverse); }
+.footer { padding: var(--s5) 0; font-size: 14px; border-top: 1px solid var(--rule); }
 .footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: var(--s4); align-items: start; }
-.footer__label { margin: 0 0 var(--s2); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); }
-.footer__note { margin-top: var(--s2); color: var(--slate); font-size: 13px; max-width: 42ch; }
+.footer__label { margin: 0 0 var(--s2); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper); opacity: 0.65; }
+.footer__note { margin-top: var(--s2); font-size: 13px; max-width: 40ch; opacity: 0.7; }
 .footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--s1); }
-.footer a { color: var(--paper); text-decoration: none; }
-.footer a:hover { color: var(--slate); }
+.footer a { text-decoration: none; }
+.footer a:hover { color: var(--paper); text-decoration: underline; }
 .footer .lockup { margin-bottom: var(--s2); }
 
 /* ---------- responsive ---------- */
+@media (max-width: 1100px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dates__row { grid-template-columns: 200px minmax(0, 1fr); }
+  .dates__where { grid-column: 2; }
+}
 @media (max-width: 1000px) {
-  .hero__grid { grid-template-columns: minmax(0, 1fr); }
-  .hero__mark { display: none; }
+  .mission__grid { grid-template-columns: minmax(0, 1fr); }
+  .mission__mark { display: none; }
   .band__grid { grid-template-columns: minmax(0, 1fr); }
   .band__mark { display: none; }
-  .overview { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3); }
-  .cols { grid-template-columns: minmax(0, 1fr); gap: var(--s4); }
-  .footer__grid { grid-template-columns: 1fr 1fr; }
 }
-
 @media (max-width: 760px) {
   .wrap { padding: 0 var(--s4); }
   .nav a:not(.btn) { display: none; }
-  .hero { padding-top: var(--s4); }
-  .hero .lede { font-size: 22px; }
-  .hero__rule { margin-top: var(--s4); }
+  .mission { padding-top: var(--s5); padding-bottom: var(--s5); }
   .section { padding-top: var(--s4); padding-bottom: var(--s4); }
   .band { padding: var(--s5) 0; }
-  .overview { grid-template-columns: minmax(0, 1fr); }
-  .session, .fact { grid-template-columns: minmax(0, 1fr); gap: var(--s1); }
-  .session__when { display: flex; align-items: baseline; gap: 12px; }
-  .session__idx { margin-bottom: 0; }
+  .panel { padding: var(--s3); }
+  .stats { grid-template-columns: minmax(0, 1fr); }
+  .offer { grid-template-columns: 44px minmax(0, 1fr); gap: var(--s2); }
+  .offer__mark { width: 44px; height: 44px; }
+  .offer__jump { grid-column: 2; }
+  .session, .dates__row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .member { grid-template-columns: minmax(0, 1fr); gap: var(--s1); }
+  .embed iframe { height: 620px; }
   .footer__grid { grid-template-columns: minmax(0, 1fr); gap: var(--s3); }
 }
-
 @media (max-width: 480px) {
   .wrap { padding: 0 var(--s3); }
   .btn { width: 100%; text-align: center; }
@@ -258,234 +300,299 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
 
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="header">
+<header class="header field--dark">
   <div class="wrap header__inner">
     <a class="lockup" href="#top">
-      <svg class="lockup__mark" aria-hidden="true"><use href="#mark"/></svg>
+      <svg class="lockup__mark" aria-hidden="true"><use href="#mark-accent"/></svg>
       <span class="lockup__type">Zurich Biosecurity&nbsp;Hub</span>
     </a>
     <nav class="nav" aria-label="Sections">
-      <a href="#lectures">Lecture series</a>
-      <a href="#course">Intensive course</a>
-      <a href="#reading">Reading group</a>
-      <a href="#about">About</a>
-      <a class="btn btn--primary btn--small" href="#involved">Get involved</a>
+      <a href="#mission">Mission</a>
+      <a href="#offer">What we offer</a>
+      <a href="#events">Events</a>
+      <a href="#programmes">Programmes</a>
+      <a href="#team">Team</a>
+      <a class="btn btn--primary btn--small" href="#contact">Get in touch</a>
     </nav>
   </div>
 </header>
 
 <main id="main">
 
-  <!-- ============ HERO ============ -->
-  <section class="hero">
-    <div class="wrap hero__grid">
+  <!-- ============ OUR MISSION ============ -->
+  <section class="mission field--dark" id="mission">
+    <div class="wrap mission__grid">
       <div>
-        <p class="eyebrow">ETH Zürich · Autumn semester 2026</p>
-        <h1>Preparedness is a technical discipline.</h1>
-        <p class="lede">The Zurich Biosecurity Hub runs lectures, a course and a reading group for people who want to work on preventing the worst pandemics.</p>
-        <p>Most of the work that reduces catastrophic biological risk — screening synthetic DNA orders, disinfecting indoor air, evaluating what AI systems make possible in a lab, writing the governance for any of it — is limited by the number of people doing it rather than by a shortage of open problems. The fellowships and research groups in the field are oversubscribed with qualified applicants. Our programmes exist to get more people to the point where they can compete for those places, and be useful once they are there.</p>
-        <p class="hero__cta">
-          <a class="btn btn--primary" href="#lectures">Sessions and dates</a>
-          <a class="btn btn--ghost" href="#course">Intensive course</a>
-        </p>
+      <h1>Our mission</h1>
+      <p class="mission__lead">We want more people in Switzerland working on the biological risks that could cause harm at a global scale.</p>
+      <div class="mission__body">
+        <p>Biotechnology has become cheaper and more capable over the past two decades, and AI systems are now able to assist with parts of it. That changes the risk picture: a pathogen causing a pandemic no longer has to come from nature. It could come from a laboratory accident, or from someone who intended it.</p>
+        <p>Work on this problem is not short of ideas. Sequencing-based detection, screening of synthesis orders, better protective equipment and clearer norms for publication are all being developed, mostly by small groups. What limits progress is how few people work on them. Switzerland has the relevant biology and engineering departments, a large life sciences industry, and in Geneva the organisations that negotiate biological weapons policy. We want to bring more people into this field.</p>
       </div>
-      <svg class="hero__mark" aria-hidden="true"><use href="#mark-hairline"/></svg>
+      </div>
+      <svg class="mission__mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#mark-accent"/></svg>
     </div>
-    <div class="wrap"><div class="hero__rule"></div></div>
   </section>
 
-  <!-- ============ OVERVIEW ============ -->
-  <section class="section section--first">
+  <!-- ============ WHAT WE OFFER ============ -->
+  <section class="section" id="offer">
     <div class="wrap">
-      <div class="overview">
-        <div class="overview__item">
-          <p class="overview__label">Autumn 2026</p>
-          <h3><a href="#lectures">Lecture series</a></h3>
-          <p>Five standalone evening sessions at ETH Zürich. Open to everyone, no prior knowledge assumed.</p>
+      <div class="sec-head"><h2>What we offer</h2></div>
+      <div class="panel">
+        <div class="offer">
+          <img class="offer__mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAFD0lEQVR42u3dy24cRRSA4XOqq7p9iZBIJISDQYE8QpbZRmxAYhuJpwC2ERKCJfASSLBHsEHwJlkEJVwNCrYZuW91DosxEVHsnh7bY2Ym/7dulfryu7p7WnLp1Vu3BTirwCkAAYGAQEAgIICAQEAgIBAQQEAgIBAQCAggIBAQCAgEBBAQCAgEBAICAQEEBAICAYGAAAICAYGAQEAAAYGAQEAgIICAQEAgIBAQCAggIBAQCAgEBBAQCAgEBAICCAgEBAICAQEEBAICAYGAAAICAYGAQEAgIGBOceX2WFXHb+zuix5n2Y6LgGbIZuIuMuJ0q4TTr0o2k5FXYXCcCzuubKNbu4z9WduAqpRUVWZdfBcVkb7r/aQt9XicUZfLRbq+l4X90btIUN0oo4yrwtz7PhPQ3DN8Nitj/OLTj27u7rRNqxpOvyRehHBQN+++d+/nvT+qsjSzJ+P0Ob+wvfXl559cv/Zi2/d6+nVz8TIWe38d3H3/3uP9wxSjXXRGIWhdtzd2d7767OMqFtl9aH/cqo3q/oOHdz/40N1DCP/7vWzFZiAVuXH95Tde223rOoQw8IhQFMVhXRdFccIpdlfV13d3XnnpWtt0IQxcME8pXtneVlWXxc1AHovi5qvXqxSz2cDDkJmVm1tt08qyPAKt4C2sadu2bo+admZAR0078AdaN23dtE3dhWIooJytbttFH5S7HzWtmc0MSLVo2o63sHPdy0LQoDrwIDl9qhh+0pxuMB1qaJygl/PEOt0fVx16HVMNQXVpnqD5HQgEBAICAYGAgOfhLWwZXwzHbbQ0368IaJn4yB+DffoargSEp6SU3EdMQiri3udMQDieS3LOm5ubb965U5XJzGRgdnEviuLvyeS773/o+36d5iECOm9GV7a3qqrMeegThLvHBXyIJaB1kI/NCGg6YxEQTpiEnpi52fodPr8DgYBAQCAgEBBAQCAgEBAICCAgEBAICAQEEBAICAQEAgIICAQEAgIBgYAAAgIBgYBAQAABgYBAQCAggIBAQCAgEBBAQCAgEBAICAQEEBAICCto9f5TvbubmZkNb6Oqw2tT/GccnbHNpaxxYf8aXvb70vZnbQNKKZVV5eIz1o0PRWt22rVQkZRSVVWqIYShgFKMVUqLXqRAVTeqqkox+4yAUlVVZRI9XoCMgOaafEREfvzp96BFn7vBCy+q4XBylLPpsxOMirk/ePTrUdNl6waWhTf3IsQ/Hx9k85ELE54hHhHtc77/6JeqjO4+EKuZx1g9/G1PFrY3c+/91Vu3V2sGKlNUERcds8Zb2/WnLCioZYqq4u46cAsTV1V3abvu2Tkj57y1tfXO22+NXO7p4PDw62++PWG9MBcNkmLSWfOKi6iKmXd9zy3sjOqmGz99n36b87ppR4+jA7PdhcxB7lI3zRzvPiEQ0BkVxRznbmA904sa5+KOq1iq/Vnnt7ClGmfZjuuS8TsQCAgEBAICAQFr/xa2hG+FU+fchoCe1z/BGGOMqrN/iY4xEhCeLsNsf/+gLJOZDX1ccS+KYjKZrN8ZWL1vYUv3FKnqMvbbptu63cWYgc7L5nm4UVUCwvpnwWs8CAgEBAICCAgEBAICAQEEBAICAYGAAAICAYGAQEAgIICAQEAgIBAQQEAgIBAQCAggIBAQCAgEBBAQCAgEBAICAQEEBAICAYGAAAICAYGAQEAAAYGAQEAgIICAQEAgIBAQCAggIBAQVtA/BA/tBlxUiy4AAAAASUVORK5CYII=" alt="" width="56" height="56">
+          <div>
+            <h3>Lectures and workshops</h3>
+            <p>Public talks at ETH Zürich, open to everyone, no background required.</p>
+          </div>
+          <p class="offer__jump"><a href="#lectures">Details</a></p>
         </div>
-        <div class="overview__item">
-          <p class="overview__label">December 2026</p>
-          <h3><a href="#course">Intensive course</a></h3>
-          <p>Six days of reading and facilitated discussion for eight to ten participants. Application only.</p>
+        <div class="offer">
+          <img class="offer__mark" src="data:image/png;base64,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" alt="" width="56" height="56">
+          <div>
+            <h3>Fellowship</h3>
+            <p>A structured course on globally catastrophic biological risks, in small groups.</p>
+          </div>
+          <p class="offer__jump"><a href="#fellowship">Details</a></p>
         </div>
-        <div class="overview__item">
-          <p class="overview__label">From early 2027</p>
-          <h3><a href="#reading">Paper reading group</a></h3>
-          <p>One paper, read in advance, discussed in person. Runs through the ETH exam session.</p>
+        <div class="offer">
+          <img class="offer__mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAFBElEQVR42u3dvW5cRRTA8XNm5n7ExiaKCBiCgQghHiBlOhAlNS0dJVRINBTugJcAHgIJXgURESAJSgKxEuK9H/NBsSRQpbC5Xp/x//cC3vX979ydu2fv6qVr1wU4Lse/AAQEAgIBgYAAAgIBgYBAQAABgYBAQCAggIBAQCAgEBBAQCAgEBAICAQEEBAICAQEAgIICAQEAgIBAQQEAgIBgYAAAgIBgYBAQCAggIBAQCAgEBBAQCAgEBAICCAgEBAICAQEEBAICAQEAgIICAQEAoJRwdwjVtWKj0cphYCWlXKWUmk+Ks7ay8NeQF0TVNYJ1bQUlfWTmmMioKXOXCnlrglff3Hw+pW9FCfn6nkDl3P2ob156/cPP/18nKP3zsq5zNQKpCIiV1/de/vq/jgMlQXU9b1TMbew2juFzfM0DeMwjJUFpKLzPLELO41zmXuipjfQzjmLG0yuA4GAQEAgIBAQQEBgG/8s5T+qOQx2n5G9gLz33jvvfU3XgVR1/aQIaMn/skgRORrGv1ar+q5Ep5KPhrFY+4hYL127burxygsXLwbvazp/PV2EYkr3Dw9tDatYO4UVuXP3fql0IEhFm8bYEbH3Hqhtm1pHEgsTiae0YWH3TEAnea9Q8fFgBVpcjEnqHYr23hHQsnaf21J1RUpVE9EiKlpKfrwaCGipM1fKuQ3h268O3nztlbm660BN3/30y+0PPv5sitE7ZqKX2ujKy5cv7b/04jCsKguo7y8crQZzy6rFmeh5nqZpmrWigErO3vl5ntmFnca5bM1VtB3LT56UuUfOOAcICAQEAgIBAQQEtvHPwkw0AZ3sEYfQNCGmUNtHGU0IIRDQoq9TEZV7Dx49v3MYp9o+CwvtcO/BI1FjowbGZqJVZXd7W9XVONGhpeSHjx8XZqKXfK8gfxw+rHgmOgRj3+yxd9JtmsBMNAGdbMPC7pmATrbUb36pgNWAcs5n4WFUdoO9cxRQ3/eqKqVsZiEqIqqllGmaqMdaQKWod++9+87uzk5KSTYyflWKc261Wn33/Q/jOPoav2Rd8wqkom3T9H0fY9zI/F4pxXufzsZplICOeQhzzjnnTQWkqmwE/30vyL8ABAQCAgGBgAACAgHBCsMz0efwrxPQ/8B7H0IQKZu5kJiLD8F7L0o8NgM6Wq1CCDEm3dCHqc671TAw0rFm7T7RIt57Vd3Y8dN1RSVZ+3llVqB/xBjPxCtPOYfZDIgjxzYerEAbXYH4VgYBHd84zWVT86wL56OqLb+VsfTys793OXhf35U8VYkp3f3z0NYiZOo+0Sl3rf/my4O33rgSx+q+G991P/586/2PPhmn6D33iV4kIpEi21vtzoV+VK0soK7vtrdasfaLcwa/F5ZyTjmm5Co6jeWcm5Rzsjerb/g+0TXtxpT7RON8IiAQEAgIBAQCAqrfxj/9bnxNh2H9jLhP9LLWF0natm37TkR8RVeiU85t37VtK8YuRJu7S6vIjV9vSynTODlX0Q/O5dJ27Y3f7phbguzNRIfgVbS+O/2un1S0Nmpt8TdTY7W/Gm9wYNfkZ2G1bh0tvjAC/2icBNeBQEAgIBAQCAggIBAQCAgEBBAQCAgEBAICCAgEBAICAQEEBAICAYGAQEAAAYGAQEAgIICAQEAgIBAQQEAgIBAQCAggIBAQCAgEBAICCAgEBAICAQEEBAICAYGAAAICAYGAQEAAAYGAcGb8DYA20+/mPjHqAAAAAElFTkSuQmCC" alt="" width="56" height="56">
+          <div>
+            <h3>Paper reading group</h3>
+            <p>Regular discussions of current work in the field, in person and online.</p>
+          </div>
+          <p class="offer__jump"><a href="#reading">Details</a></p>
+        </div>
+        <div class="offer">
+          <img class="offer__mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAE10lEQVR42u3dz24bVRSA8XPmnjs2cZOgdMEfUQl1wQt02RWIZ2DHI7BELGGF1C08AVsWCAmxQ+qLdFUBokoTmsQ08XjuPSzcpELKjJ1ojH2r77eLNFLGM9/cO/bYM3rw4KEAt1WxCUBAICAQEAgIICAQEAgIBAQQEAgIBAQCAggIBAQCAgEBBAQCAgGBgEBAAAGBgEBAICCAgEBAICAQEEBAICAQEAgIICAQEAgIBAQCAggIBAQCAgEBBAQCAgGBgAACAgGBgEBAAAGBgLAtrMSV1tUWc3YvAV2ThXtecXRV3Z51XvXY2Jp1fmMDitFU1HvHl8VOaFNefc+tVQhhxdJydgJaz7SlmnOOZj88+ub+B+81s6aqtOtwr0L453z2+Zdf//7scFTHTWWkqimlyc7Op598HMx6VsPdLYSz6fS3x489ZSlnHCpsBFKR+/fe/+jDe83FLFRVT0DTl+chBBHXzZ4Muavq/t6+xWUBmYmqijoj0Lr2hYiINE3TXMzOLy6q7oBCCLOm2ZL5S0TathWV/oBEJLUtJ9H/x7xQXeocgapqq85GVXXp+qyyzBbicyAQEAgIBAQCAggIBAQCAgEBBAQCAgGBgAACAgGBgEBAAAGBgEBAKJm9wa9Nr2x6BQhoO7vQvkVE2pTmbbKQ8gZ/WNimNqXsnt37f9bTvwABDSbnPE9tm1LVsbkX+yHlvDvZ2d+djOvaNxrQZLJTx2AWetbCPZtZtEBAa98n7r44XqV7h7Qp1dF++u7b5FllwzOIigQzXXZUjMajJ0///PmXX5NIpVrKaFRaQO4hhNpistT1w8Ir79w9kMUPmzeV0OJf++KHp94f0Hg8fr53oqXdlabAcyB/rX/BZj4vaF62NqU2MYVt19l2cW8MitvIfA4EAgIBgYBAQAABgYBQjCLvE73iB4k3tfrHMIP/6zW9IgK6bo2jxWgp2dJLGTeKR8RTdve+u7q+ui6iGiq9/GsYOecYzaIR0FoHHxGRw6PTvcnfbTMbMiAXreSt0VgXVzG1ezFVdz+fXXge8hJbztnq0eHR6dXLLIUePHhY0uqK7t7ZqaohL1aratumu3t3fvz+0bsHbzfztmsuc/c62l/HLz774quj06lZGHY1cvaz6UsvqqDCxkwXPz45fX2Ze6A9N29bzx7NxnWtql0P2cjuoxij2fMXZ0enJ7H35vO3mENF1EJhXwkq8FkZy75bc4uAVNTMxH3x1cHOiebye0hmVlscNKBXc1dx59FlvgsbeFqUm36d1C9TK/F907D4HAgEBAICAYGAAAICAYGAQEAAAYGAQEAgIICAQEAgIBAQQEAgIBAQCAgEBBAQCAgEBAICCAgEBAICAQFdjE1wxd1zzjln6b7BVM6ZW7oQ0HVU6roej0chhJ47lMVodV2Lsr0I6D/xaM75ydM/zqbTtu27R6KZPTs+yXnzD0Lclk1X1k0212rxyFJfkpqIyLzAJ8MxAq3dbN6u+tZDGX4I6LosVumCU2gCIo7hjjo2AQgIBAQCAgEBBAQCAgGBgAACAgGBgEBAAAGBgEBAICCAgEBAICAQEAgIICAQEAgIBAQQEAgIBAQCAggIBAQCAgEBBAQCAgGBgEBAAAGBgEBAICCAgEBAICAQEEBAICAQEAgIICAQELbFv4Et1fXQdJRCAAAAAElFTkSuQmCC" alt="" width="56" height="56">
+          <div>
+            <h3>Career advising</h3>
+            <p>One-to-one conversations about working on these problems.</p>
+          </div>
+          <p class="offer__jump"><a href="#advising">Details</a></p>
+        </div>
+        <div class="offer">
+          <img class="offer__mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAFQUlEQVR42u3dMW8jRRTA8fdmZrO24yQmEULipAgQ4jqaK69BQoKCBnESdFAjOr4DlHwCkKgoTgiupqJAAglERYHo7jjuAHGBXJw4tmfeowjQEDuR7UDW/v/aO63s7D+zu7ObWd2+dl2AWQV+BCAgEBAICAQEEBAICAQEAgIICAQEAgIBAQQEAgIBgYAAAgIBgYBAQCAggIBAQCAgEBBAQCAgEBAICCAgEBAICAQEEBAICAQEAgIBAQQEAgIBgYAAAgIBgYBAQAABgYBAQCAggIBAQCAgEBBAQCAgEBAaKjUv+aAiOv92zIzdv4oBHR0P3X2eglxEReu1SlUpYLUCUtVnntitUnT32Tciau4/3v9lnDMNrUpAqppL6bRaH733zlNXHhuNRiHMsu/dPYa4fzh8/o03b9//uV3XHMtWZQRSEREPQYKqiujMZ0KqMYqIM/is4jmQi7jZzMOGu6uqiLPvVzQgFdG/zXw0XMh1HIR5IBAQCAgEBAICCAhcxk9nZmZWzGabyTmZB2L2eUUDUpVOq1V31lNKIYTZAgoxmgZVZTJxxQJSNZNvvvv+3q+/lTwOOuO9MA3xcDAcjXMQneemLEREt69db9Ynzjn73LtdVVOKQRiEVu8cqKqqhWzHGXxWMyD2OwHN94ljlOW9m55LIaCLHH5E9vYfmpks35OE7iGEje66EtAFXcCbeUrptZde6HbaZrZMCblLCKF/NPjsi69yziFoUw7UDRqB1NzWYnz37bd2rzwuNhRdoml0Nwn1nZ/uff7l16PxOEhoykG6YY+0mnh/0D/u7w+Gw9kmEi8nM2vXdX/Qt6Y9aNu8k+gYYowxxbhUAanGGGOIjfvk3EwFAYGAQEAgIICAQEBojObNA5VScim5lDBhtj/GqOfbzgLnesO5psXdJnxmM8ullKbdSZUmLu/S29xsd3vtzlAmTCQe9w/LWY88q8jm1paEhdwxUHGz0eiseESD6tqaTChIQt3bHDRuuZnUrHpyLu/fvLWztZFzOeWRVncRvfHiczu9rSlr/6jquJQPbt46ODyMMcl89y1dJISwsb2jk58ycRFVLTn3f987vR/3lOKD/YOcS7MaatgjrS7y8KBv5v9eHEFV3UxEvv3kw2evPn14NDj1Xoe7xxgPjo+vvfz63bv3Y6tlVuZp2nJe39h49cYrVUqTHnYz9yqlB3t7H396a8p3C0E3N7rcC7vI3kV2elun/qqf/LGOiqYQzxxTVHR7a7M/GLTW5lpg6mRcWe92u+1WmhyQu6cUx532o4/0pn0354GyizfpR/xPQH7u7eRccizzBlRKKeXkr9WmBGQWillu4Gkyl/EgIBAQCAggIBAQCAgEBBAQCAgEBAICAQEEBAICAYGAAAICAYGAQEAAAYGAQEAgIICAQEAgIBAQCAggIBAQCAgEBBAQCAiXX1q+r+Tu4n859V/d3f/zN5I6ATWDSqoqiVW1ViatEx1i1FFRXdybkVXDySs4pyzzG0No4Bstz/7qzVpo/DyuPrlb17WbT1zxXaVk++H2ndFoPP8Ltk9WLu/1enpGY5pz/mN/n4Auu8Hx0Pysd2Wotus6qC5kDHL3Uoq7iE77T6qa0rIN+Ut4DrTeaZ/rbT1mizuCaVVV5z0/I6BLbp6V5+c6c+cyHiAgEBAICAQEEBAICAQEAgIICAQEAgIBAQQEAgIBgYBAQAABgYBAQCAggIBAQCAgEBBAQCAgEBAICCAgEBAICAQEAgIICAQEAgIBAQQEAgIBgYAAAgIBgYBAQAABgYBAQCAggIBAQPg//QlNxdvfZDn/jgAAAABJRU5ErkJggg==" alt="" width="56" height="56">
+          <div>
+            <h3>Coworking space</h3>
+            <p>We are based at <a href="https://peaks-office.ch/">PEAKS</a> in Zürich, a shared office for people working on global risks.</p>
+          </div>
+          <p class="offer__jump"></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ LECTURE SERIES ============ -->
-  <section class="section" id="lectures">
+  <!-- ============ WHY THIS MATTERS ============ -->
+  <section class="section field--dark" id="why">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-num">01</span>
-        <h2>Preventing the Next Pandemic</h2>
+      <div class="sec-head"><h2>Why this matters</h2></div>
+      <div class="stats">
+        <div class="stat">
+          <p class="stat__value">14.9 million</p>
+          <p class="stat__label">Excess deaths associated with COVID-19 in 2020 and 2021.</p>
+          <p class="stat__src"><a href="https://www.who.int/news/item/05-05-2022-14.9-million-excess-deaths-were-associated-with-the-covid-19-pandemic-in-2020-and-2021">WHO, 2022</a></p>
+        </div>
+        <div class="stat">
+          <p class="stat__value">2% a year</p>
+          <p class="stat__label">Estimated probability of a pandemic on the scale of COVID-19, with the risk of novel outbreaks projected to grow.</p>
+          <p class="stat__src"><a href="https://www.pnas.org/doi/10.1073/pnas.2105482118">Marani et al., PNAS 2021</a></p>
+        </div>
+        <div class="stat">
+          <p class="stat__value">4 to 10%</p>
+          <p class="stat__label">Forecasters' and domain experts' estimate that an engineered pathogen kills more than 1% of humanity by 2100.</p>
+          <p class="stat__src"><a href="https://80000hours.org/problem-profiles/preventing-catastrophic-pandemics/">80,000 Hours, 2024</a></p>
+        </div>
+        <div class="stat">
+          <p class="stat__value">1 of 27</p>
+          <p class="stat__label">Countries with a BSL-4 laboratory that have comprehensive oversight of dual-use research.</p>
+          <p class="stat__src"><a href="https://www.globalbiolabs.org/">Global BioLabs, 2023</a></p>
+        </div>
       </div>
-      <p>A five-part lecture series on global catastrophic biological risk. Each session stands on its own — none builds on another, and none assumes a background in biology. Come to one or come to all five.</p>
-      <p class="meta"><span class="mono">18:15&ndash;19:45</span> · ETH Zürich, room to be announced · Free, no registration</p>
-
-      <div class="sessions">
-        <article class="session">
-          <p class="session__when"><span class="session__idx">01</span><span class="mono">Wed 30 Sep 2026</span></p>
-          <div>
-            <h3 class="session__title">The Deliberate Pandemic</h3>
-            <p class="session__desc">Preparedness usually assumes nature is the adversary. What changes when a pathogen is engineered on purpose: which capabilities that requires, who plausibly has them, and why deliberate outbreaks sit at the far tail of the risk distribution.</p>
-          </div>
-        </article>
-        <article class="session">
-          <p class="session__when"><span class="session__idx">02</span><span class="mono">Mon 12 Oct 2026</span></p>
-          <div>
-            <h3 class="session__title">When AI Meets the Lab</h3>
-            <p class="session__desc">Protein design tools and large language models are changing what a small group can do at the bench. What the evidence on uplift actually shows, how frontier models are evaluated for biological capability, and which safeguards exist at the interface between the two fields.</p>
-          </div>
-        </article>
-        <article class="session">
-          <p class="session__when"><span class="session__idx">03</span><span class="mono">Wed 28 Oct 2026</span></p>
-          <div>
-            <h3 class="session__title">Mirror Life</h3>
-            <p class="session__desc">Organisms built from mirror-image molecules would be largely invisible to existing immune defences. Why a group of researchers concluded that mirror bacteria should not be built, and what it takes to stop a technology before it exists.</p>
-          </div>
-        </article>
-        <article class="session">
-          <p class="session__when"><span class="session__idx">04</span><span class="mono">Wed 11 Nov 2026</span></p>
-          <div>
-            <h3 class="session__title">Cutting Transmission</h3>
-            <p class="session__desc">Countermeasures that work without knowing which pathogen arrives: respirators and fit testing, indoor air quality, far-UVC. The engineering, the cost, and the open questions — rather than the vaccine-centred picture of preparedness.</p>
-          </div>
-        </article>
-        <article class="session">
-          <p class="session__when"><span class="session__idx">05</span><span class="mono">Wed 2 Dec 2026</span></p>
-          <div>
-            <h3 class="session__title">Defence in Depth</h3>
-            <p class="session__desc">Prevention, detection and response as layers: nucleic-acid synthesis screening, metagenomic surveillance, the Biological Weapons Convention. Where the layers are thin, and where the work is.</p>
-          </div>
-        </article>
-      </div>
+      <p class="note" style="margin-top: var(--s3);">Around one billion dollars a year goes to reducing catastrophic biological risk specifically, against roughly 130 billion for outbreak preparedness overall (<a href="https://80000hours.org/problem-profiles/preventing-catastrophic-pandemics/">80,000 Hours, 2024</a>).</p>
     </div>
   </section>
 
-  <!-- ============ INTENSIVE COURSE ============ -->
-  <section class="section" id="course">
+  <!-- ============ UPCOMING EVENTS ============ -->
+  <section class="section" id="events">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-num">02</span>
-        <h2>Intensive course</h2>
+      <div class="sec-head"><h2>Upcoming events</h2></div>
+      <p>All sessions, fellowship dates and reading group meetings are on our <a href="https://luma.com/zurich-biosecurity">Luma calendar</a>.</p>
+      <div class="embed">
+        <iframe src="https://luma.com/embed/calendar/cal-M6JthEVC9b0Ua7M/events" title="Upcoming Zurich Biosecurity Hub events on Luma" loading="lazy" allowfullscreen></iframe>
       </div>
-      <p>Six days covering the field in sequence: one unit per day, two to three hours of reading on your own, then two hours of facilitated discussion with the group. Small by design — the point is that everyone has read the material and everyone talks.</p>
 
-      <dl class="facts">
-        <div class="fact">
-          <dt>Dates</dt>
-          <dd><span class="mono">Mon 7 &ndash; Sat 12 December 2026</span><br><span class="muted">Monday to Friday <span class="mono">18:00&ndash;20:00</span>, Saturday <span class="mono">15:00&ndash;17:00</span> followed by dinner.</span></dd>
+      <!-- FALLBACK: if the Luma embed above does not render, delete the .embed block
+           and uncomment this static list instead. Keep the dates in sync by hand.
+      <div class="dates">
+        <div class="dates__row">
+          <p class="dates__when">Wednesday 30 September</p>
+          <p class="dates__title">The Deliberate Pandemic</p>
+          <p class="dates__where">ETH Zürich · 18:15&ndash;19:45</p>
         </div>
-        <div class="fact">
-          <dt>Location</dt>
-          <dd>PEAKS Office, Bern</dd>
+        <div class="dates__row">
+          <p class="dates__when">Monday 12 October</p>
+          <p class="dates__title">When AI Meets the Lab</p>
+          <p class="dates__where">ETH Zürich · 18:15&ndash;19:45</p>
         </div>
-        <div class="fact">
-          <dt>Places</dt>
-          <dd>Eight to ten participants, by application</dd>
+        <div class="dates__row">
+          <p class="dates__when">Wednesday 28 October</p>
+          <p class="dates__title">Mirror Life</p>
+          <p class="dates__where">ETH Zürich · 18:15&ndash;19:45</p>
         </div>
-        <div class="fact">
-          <dt>Curriculum</dt>
-          <dd>Adapted from the BlueDot Impact biosecurity course, six units</dd>
+        <div class="dates__row">
+          <p class="dates__when">Wednesday 11 November</p>
+          <p class="dates__title">Cutting Transmission</p>
+          <p class="dates__where">ETH Zürich · 18:15&ndash;19:45</p>
         </div>
-        <div class="fact">
-          <dt>Commitment</dt>
-          <dd>Roughly five hours a day for six days, reading included</dd>
+        <div class="dates__row">
+          <p class="dates__when">Wednesday 2 December</p>
+          <p class="dates__title">Defence in Depth</p>
+          <p class="dates__where">ETH Zürich · 18:15&ndash;19:45</p>
         </div>
-      </dl>
-
-      <p class="note">Applications are not open yet. Write to us to be told when they are, or if a run in early March 2027 would suit you better — we are considering a second date.</p>
-      <p><a class="btn btn--primary" href="mailto:erik@effectivealtruism.ch?subject=Intensive%20course%20%E2%80%94%20Zurich%20Biosecurity%20Hub">Register your interest</a></p>
+      </div>
+      -->
     </div>
   </section>
 
-  <!-- ============ READING GROUP ============ -->
-  <section class="section" id="reading">
+  <!-- ============ PROGRAMMES ============ -->
+  <section class="section field--dark" id="programmes">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-num">03</span>
-        <h2>Paper reading group</h2>
+      <div class="sec-head"><h2>Programmes</h2></div>
+
+      <div class="prog" id="lectures">
+        <div class="prog__head">
+          <img class="prog__mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAFD0lEQVR42u3dy24cRRSA4XOqq7p9iZBIJISDQYE8QpbZRmxAYhuJpwC2ERKCJfASSLBHsEHwJlkEJVwNCrYZuW91DosxEVHsnh7bY2Ym/7dulfryu7p7WnLp1Vu3BTirwCkAAYGAQEAgIICAQEAgIBAQQEAgIBAQCAggIBAQCAgEBBAQCAgEBAICAQEEBAICAYGAAAICAYGAQEAAAYGAQEAgIICAQEAgIBAQCAggIBAQCAgEBBAQCAgEBAICCAgEBAICAQEEBAICAYGAAAICAYGAQEAgIGBOceX2WFXHb+zuix5n2Y6LgGbIZuIuMuJ0q4TTr0o2k5FXYXCcCzuubKNbu4z9WduAqpRUVWZdfBcVkb7r/aQt9XicUZfLRbq+l4X90btIUN0oo4yrwtz7PhPQ3DN8Nitj/OLTj27u7rRNqxpOvyRehHBQN+++d+/nvT+qsjSzJ+P0Ob+wvfXl559cv/Zi2/d6+nVz8TIWe38d3H3/3uP9wxSjXXRGIWhdtzd2d7767OMqFtl9aH/cqo3q/oOHdz/40N1DCP/7vWzFZiAVuXH95Tde223rOoQw8IhQFMVhXRdFccIpdlfV13d3XnnpWtt0IQxcME8pXtneVlWXxc1AHovi5qvXqxSz2cDDkJmVm1tt08qyPAKt4C2sadu2bo+admZAR0078AdaN23dtE3dhWIooJytbttFH5S7HzWtmc0MSLVo2o63sHPdy0LQoDrwIDl9qhh+0pxuMB1qaJygl/PEOt0fVx16HVMNQXVpnqD5HQgEBAICAYGAgOfhLWwZXwzHbbQ0368IaJn4yB+DffoargSEp6SU3EdMQiri3udMQDieS3LOm5ubb965U5XJzGRgdnEviuLvyeS773/o+36d5iECOm9GV7a3qqrMeegThLvHBXyIJaB1kI/NCGg6YxEQTpiEnpi52fodPr8DgYBAQCAgEBBAQCAgEBAICCAgEBAICAQEEBAICAQEAgIICAQEAgIBgYAAAgIBgYBAQAABgYBAQCAggIBAQCAgEBBAQCAgEBAICAQEEBAICCto9f5TvbubmZkNb6Oqw2tT/GccnbHNpaxxYf8aXvb70vZnbQNKKZVV5eIz1o0PRWt22rVQkZRSVVWqIYShgFKMVUqLXqRAVTeqqkox+4yAUlVVZRI9XoCMgOaafEREfvzp96BFn7vBCy+q4XBylLPpsxOMirk/ePTrUdNl6waWhTf3IsQ/Hx9k85ELE54hHhHtc77/6JeqjO4+EKuZx1g9/G1PFrY3c+/91Vu3V2sGKlNUERcds8Zb2/WnLCioZYqq4u46cAsTV1V3abvu2Tkj57y1tfXO22+NXO7p4PDw62++PWG9MBcNkmLSWfOKi6iKmXd9zy3sjOqmGz99n36b87ppR4+jA7PdhcxB7lI3zRzvPiEQ0BkVxRznbmA904sa5+KOq1iq/Vnnt7ClGmfZjuuS8TsQCAgEBAICAQFr/xa2hG+FU+fchoCe1z/BGGOMqrN/iY4xEhCeLsNsf/+gLJOZDX1ccS+KYjKZrN8ZWL1vYUv3FKnqMvbbptu63cWYgc7L5nm4UVUCwvpnwWs8CAgEBAICCAgEBAICAQEEBAICAYGAAAICAYGAQEAgIICAQEAgIBAQQEAgIBAQCAggIBAQCAgEBBAQCAgEBAICAQEEBAICAYGAAAICAYGAQEAAAYGAQEAgIICAQEAgIBAQCAggIBAQVtA/BA/tBlxUiy4AAAAASUVORK5CYII=" alt="" width="48" height="48">
+          <h3>Lectures and workshops</h3>
+        </div>
+        <p>The series <em>Preventing the Next Pandemic</em> runs at ETH Zürich in the autumn semester 2026. Five introductory sessions, no background required, and the sessions do not build on each other.</p>
+        <p class="meta"><span class="mono">18:15&ndash;19:45</span> · room to be announced · free, no registration</p>
+        <div class="sessions">
+          <div class="session">
+            <p class="session__when">Wednesday 30 September</p>
+            <p class="session__title">The Deliberate Pandemic</p>
+          </div>
+          <div class="session">
+            <p class="session__when">Monday 12 October</p>
+            <p class="session__title">When AI Meets the Lab</p>
+          </div>
+          <div class="session">
+            <p class="session__when">Wednesday 28 October</p>
+            <p class="session__title">Mirror Life</p>
+          </div>
+          <div class="session">
+            <p class="session__when">Wednesday 11 November</p>
+            <p class="session__title">Cutting Transmission</p>
+          </div>
+          <div class="session">
+            <p class="session__when">Wednesday 2 December</p>
+            <p class="session__title">Defence in Depth</p>
+          </div>
+        </div>
       </div>
-      <p>A biosecurity paper reading group has been running in Zürich for about a year, organised by doctoral researchers. It resumes after the lecture series and continues through the ETH exam session in late January and February 2027, when nothing else is on.</p>
-      <p>One paper per session, circulated in advance, discussed in person. Dates and the reading list will be posted here.</p>
+
+      <div class="prog" id="fellowship">
+        <div class="prog__head">
+          <img class="prog__mark" src="data:image/png;base64,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" alt="" width="48" height="48">
+          <h3>Fellowship</h3>
+        </div>
+        <p>A fellowship will run in a small group, with guided reading and facilitated discussions on globally catastrophic biological risks. Details will be announced when applications open. <a href="mailto:info@zurichbiosecurity.ch?subject=Fellowship">Write to us</a> to hear about it then.</p>
+      </div>
+
+      <div class="prog" id="reading">
+        <div class="prog__head">
+          <img class="prog__mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAFBElEQVR42u3dvW5cRRTA8XNm5n7ExiaKCBiCgQghHiBlOhAlNS0dJVRINBTugJcAHgIJXgURESAJSgKxEuK9H/NBsSRQpbC5Xp/x//cC3vX979ydu2fv6qVr1wU4Lse/AAQEAgIBgYAAAgIBgYBAQAABgYBAQCAggIBAQCAgEBBAQCAgEBAICAQEEBAICAQEAgIICAQEAgIBAQQEAgIBgYAAAgIBgYBAQCAggIBAQCAgEBBAQCAgEBAICCAgEBAICAQEEBAICAQEAgIICAQEAoJRwdwjVtWKj0cphYCWlXKWUmk+Ks7ay8NeQF0TVNYJ1bQUlfWTmmMioKXOXCnlrglff3Hw+pW9FCfn6nkDl3P2ob156/cPP/18nKP3zsq5zNQKpCIiV1/de/vq/jgMlQXU9b1TMbew2juFzfM0DeMwjJUFpKLzPLELO41zmXuipjfQzjmLG0yuA4GAQEAgIBAQQEBgG/8s5T+qOQx2n5G9gLz33jvvfU3XgVR1/aQIaMn/skgRORrGv1ar+q5Ep5KPhrFY+4hYL127burxygsXLwbvazp/PV2EYkr3Dw9tDatYO4UVuXP3fql0IEhFm8bYEbH3Hqhtm1pHEgsTiae0YWH3TEAnea9Q8fFgBVpcjEnqHYr23hHQsnaf21J1RUpVE9EiKlpKfrwaCGipM1fKuQ3h268O3nztlbm660BN3/30y+0PPv5sitE7ZqKX2ujKy5cv7b/04jCsKguo7y8crQZzy6rFmeh5nqZpmrWigErO3vl5ntmFnca5bM1VtB3LT56UuUfOOAcICAQEAgIBAQQEtvHPwkw0AZ3sEYfQNCGmUNtHGU0IIRDQoq9TEZV7Dx49v3MYp9o+CwvtcO/BI1FjowbGZqJVZXd7W9XVONGhpeSHjx8XZqKXfK8gfxw+rHgmOgRj3+yxd9JtmsBMNAGdbMPC7pmATrbUb36pgNWAcs5n4WFUdoO9cxRQ3/eqKqVsZiEqIqqllGmaqMdaQKWod++9+87uzk5KSTYyflWKc261Wn33/Q/jOPoav2Rd8wqkom3T9H0fY9zI/F4pxXufzsZplICOeQhzzjnnTQWkqmwE/30vyL8ABAQCAgGBgAACAgHBCsMz0efwrxPQ/8B7H0IQKZu5kJiLD8F7L0o8NgM6Wq1CCDEm3dCHqc671TAw0rFm7T7RIt57Vd3Y8dN1RSVZ+3llVqB/xBjPxCtPOYfZDIgjxzYerEAbXYH4VgYBHd84zWVT86wL56OqLb+VsfTys793OXhf35U8VYkp3f3z0NYiZOo+0Sl3rf/my4O33rgSx+q+G991P/586/2PPhmn6D33iV4kIpEi21vtzoV+VK0soK7vtrdasfaLcwa/F5ZyTjmm5Co6jeWcm5Rzsjerb/g+0TXtxpT7RON8IiAQEAgIBAQCAqrfxj/9bnxNh2H9jLhP9LLWF0natm37TkR8RVeiU85t37VtK8YuRJu7S6vIjV9vSynTODlX0Q/O5dJ27Y3f7phbguzNRIfgVbS+O/2un1S0Nmpt8TdTY7W/Gm9wYNfkZ2G1bh0tvjAC/2icBNeBQEAgIBAQCAggIBAQCAgEBBAQCAgEBAICCAgEBAICAQEEBAICAYGAQEAAAYGAQEAgIICAQEAgIBAQQEAgIBAQCAggIBAQCAgEBAICCAgEBAICAQEEBAICAYGAAAICAYGAQEAAAYGAcGb8DYA20+/mPjHqAAAAAElFTkSuQmCC" alt="" width="48" height="48">
+          <h3>Paper reading group</h3>
+        </div>
+        <p>The group meets regularly to read and discuss current work in the field, in person in Zürich and online, so you can join either way. Dates are on our <a href="https://luma.com/zurich-biosecurity">Luma calendar</a>.</p>
+      </div>
+
+      <div class="prog" id="advising">
+        <div class="prog__head">
+          <img class="prog__mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAE10lEQVR42u3dz24bVRSA8XPmnjs2cZOgdMEfUQl1wQt02RWIZ2DHI7BELGGF1C08AVsWCAmxQ+qLdFUBokoTmsQ08XjuPSzcpELKjJ1ojH2r77eLNFLGM9/cO/bYM3rw4KEAt1WxCUBAICAQEAgIICAQEAgIBAQQEAgIBAQCAggIBAQCAgEBBAQCAgGBgEBAAAGBgEBAICCAgEBAICAQEEBAICAQEAgIICAQEAgIBAQCAggIBAQCAgEBBAQCAgGBgAACAgGBgEBAAAGBgLAtrMSV1tUWc3YvAV2ThXtecXRV3Z51XvXY2Jp1fmMDitFU1HvHl8VOaFNefc+tVQhhxdJydgJaz7SlmnOOZj88+ub+B+81s6aqtOtwr0L453z2+Zdf//7scFTHTWWkqimlyc7Op598HMx6VsPdLYSz6fS3x489ZSlnHCpsBFKR+/fe/+jDe83FLFRVT0DTl+chBBHXzZ4Muavq/t6+xWUBmYmqijoj0Lr2hYiINE3TXMzOLy6q7oBCCLOm2ZL5S0TathWV/oBEJLUtJ9H/x7xQXeocgapqq85GVXXp+qyyzBbicyAQEAgIBAQCAggIBAQCAgEBBAQCAgGBgAACAgGBgEBAAAGBgEBAKJm9wa9Nr2x6BQhoO7vQvkVE2pTmbbKQ8gZ/WNimNqXsnt37f9bTvwABDSbnPE9tm1LVsbkX+yHlvDvZ2d+djOvaNxrQZLJTx2AWetbCPZtZtEBAa98n7r44XqV7h7Qp1dF++u7b5FllwzOIigQzXXZUjMajJ0///PmXX5NIpVrKaFRaQO4hhNpistT1w8Ir79w9kMUPmzeV0OJf++KHp94f0Hg8fr53oqXdlabAcyB/rX/BZj4vaF62NqU2MYVt19l2cW8MitvIfA4EAgIBgYBAQAABgYBQjCLvE73iB4k3tfrHMIP/6zW9IgK6bo2jxWgp2dJLGTeKR8RTdve+u7q+ui6iGiq9/GsYOecYzaIR0FoHHxGRw6PTvcnfbTMbMiAXreSt0VgXVzG1ezFVdz+fXXge8hJbztnq0eHR6dXLLIUePHhY0uqK7t7ZqaohL1aratumu3t3fvz+0bsHbzfztmsuc/c62l/HLz774quj06lZGHY1cvaz6UsvqqDCxkwXPz45fX2Ze6A9N29bzx7NxnWtql0P2cjuoxij2fMXZ0enJ7H35vO3mENF1EJhXwkq8FkZy75bc4uAVNTMxH3x1cHOiebye0hmVlscNKBXc1dx59FlvgsbeFqUm36d1C9TK/F907D4HAgEBAICAYGAAAICAYGAQEAAAYGAQEAgIICAQEAgIBAQQEAgIBAQCAgEBBAQCAgEBAICCAgEBAICAQFdjE1wxd1zzjln6b7BVM6ZW7oQ0HVU6roej0chhJ47lMVodV2Lsr0I6D/xaM75ydM/zqbTtu27R6KZPTs+yXnzD0Lclk1X1k0212rxyFJfkpqIyLzAJ8MxAq3dbN6u+tZDGX4I6LosVumCU2gCIo7hjjo2AQgIBAQCAgEBBAQCAgGBgAACAgGBgEBAAAGBgEBAICCAgEBAICAQEAgIICAQEAgIBAQQEAgIBAQCAggIBAQCAgEBBAQCAgGBgEBAAAGBgEBAICCAgEBAICAQEEBAICAQEAgIICAQELbFv4Et1fXQdJRCAAAAAElFTkSuQmCC" alt="" width="48" height="48">
+          <h3>Career advising</h3>
+        </div>
+        <p>One-to-one conversations about working on these problems: what to read, which programmes to apply for, who to talk to. Write to <a href="mailto:info@zurichbiosecurity.ch?subject=Career%20advising">info@zurichbiosecurity.ch</a>.</p>
+      </div>
     </div>
   </section>
 
-  <!-- ============ BAND: WHO THIS IS FOR ============ -->
-  <section class="band" id="involved">
+  <!-- ============ TEAM ============ -->
+  <section class="section" id="team">
+    <div class="wrap">
+      <div class="sec-head"><h2>Team</h2></div>
+      <ul class="team">
+        <!-- Row template. The photo is optional: drop in
+             <img class="member__photo" src="assets/team-<name>.jpg" alt="" width="56" height="56">
+             as the first child and the layout absorbs it, no text changes needed.
+             LinkedIn goes in .member__link. -->
+        <li class="member">
+          <div>
+            <p class="member__name">Dr. Erik Jentzen</p>
+            <p class="member__role">Project lead. Physician, working on biosecurity in Switzerland.</p>
+          </div>
+          <p class="member__link"></p>
+        </li>
+        <li class="member">
+          <div>
+            <p class="member__name">Chau Tran</p>
+            <p class="member__role">PhD candidate in medical virology, University of Zürich.</p>
+          </div>
+          <p class="member__link"></p>
+        </li>
+        <li class="member">
+          <div>
+            <p class="member__name">Illia Onipko</p>
+            <p class="member__role">MSc in biotechnology, ETH Zürich. ERA AIxBio Fellow.</p>
+          </div>
+          <p class="member__link"></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="band field--dark" id="contact">
     <div class="wrap band__grid">
       <div>
-        <p class="eyebrow">Who this is for</p>
-        <h2>If you are considering working on this seriously, write to us.</h2>
-        <p>Students and doctoral researchers at ETH Zürich, UZH and elsewhere in the region — biology, chemistry, computer science, medicine, engineering — and people already working on policy who want the technical picture. The lectures assume nothing. The course assumes you will do the reading.</p>
-        <p>We are not trying to fill a lecture hall. We are trying to find the few people who would go on to do this work, and to be useful to them: pointing at fellowships, reading their applications, making introductions. An email is enough to start.</p>
+        <p class="eyebrow">Get in touch</p>
+        <h2>Come to a session, or write to us first.</h2>
+        <p>The lectures are open to everyone. If you are thinking about working on this, we can point you at courses, fellowships and people.</p>
         <p class="band__cta">
-          <a class="btn btn--primary" href="mailto:erik@effectivealtruism.ch?subject=Zurich%20Biosecurity%20Hub">erik@effectivealtruism.ch</a>
+          <a class="btn btn--primary" href="mailto:info@zurichbiosecurity.ch?subject=Zurich%20Biosecurity%20Hub">info@zurichbiosecurity.ch</a>
         </p>
       </div>
       <svg class="band__mark" aria-hidden="true"><use href="#mark-hairline"/></svg>
     </div>
   </section>
 
-  <!-- ============ ABOUT ============ -->
-  <section class="section" id="about">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-num">04</span>
-        <h2>About the Hub</h2>
-      </div>
-      <div class="cols">
-        <div>
-          <p>The Zurich Biosecurity Hub is a new initiative building a route into biosecurity work from Switzerland. It teaches the field — engineered pandemics, the intersection of AI and biology, synthesis screening, transmission suppression, and the governance around all of it — and then helps the people who come through those programmes reach the research groups, fellowships and institutions where the work is done.</p>
-          <p>Switzerland is unusually well placed for this and has no organisation dedicated to it. ETH, EPFL and UZH are among Europe's strongest technical universities; Basel is the continent's largest life-sciences cluster; Geneva hosts much of the international machinery for biosecurity governance, including the WHO and the Biological Weapons Convention. What is missing is the connective work between them.</p>
-        </div>
-        <div>
-          <p>The Hub is led by Dr. Erik Jentzen, a physician working at Effective Altruism Switzerland (EACH), which hosts the project's administration and finances. The Hub operates under its own name.</p>
-          <dl class="facts facts--tight">
-            <div class="fact">
-              <dt>Contact</dt>
-              <dd><a href="mailto:erik@effectivealtruism.ch">erik@effectivealtruism.ch</a></dd>
-            </div>
-            <div class="fact">
-              <dt>Based in</dt>
-              <dd>Zürich, Switzerland</dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </section>
-
 </main>
 
-<footer class="footer">
+<footer class="footer field--dark">
   <div class="wrap footer__grid">
     <div>
-      <a class="lockup lockup--reverse" href="#top">
+      <a class="lockup" href="#top">
         <svg class="lockup__mark" aria-hidden="true"><use href="#mark-accent"/></svg>
         <span class="lockup__type">Zurich Biosecurity&nbsp;Hub</span>
       </a>
-      <p class="footer__note">Teaching programmes on global catastrophic biological risk, based in Zürich.</p>
+      <p class="footer__note">Based in Zürich, working on the biological risks that could cause harm at a global scale.</p>
     </div>
     <div>
       <p class="footer__label">Programmes</p>
       <ul>
-        <li><a href="#lectures">Lecture series</a></li>
-        <li><a href="#course">Intensive course</a></li>
-        <li><a href="#reading">Reading group</a></li>
+        <li><a href="#lectures">Lectures and workshops</a></li>
+        <li><a href="#fellowship">Fellowship</a></li>
+        <li><a href="#reading">Paper reading group</a></li>
+        <li><a href="#advising">Career advising</a></li>
       </ul>
     </div>
     <div>
-      <p class="footer__label">Contact</p>
+      <p class="footer__label">Elsewhere</p>
       <ul>
-        <li><a href="mailto:erik@effectivealtruism.ch">erik@effectivealtruism.ch</a></li>
+        <li><a href="mailto:info@zurichbiosecurity.ch">info@zurichbiosecurity.ch</a></li>
+        <li><a href="https://luma.com/zurich-biosecurity">Calendar on Luma</a></li>
+        <li><a href="https://peaks-office.ch/">PEAKS coworking</a></li>
       </ul>
-      <p class="footer__note">Hosted by Effective Altruism Switzerland (EACH).</p>
     </div>
   </div>
 </footer>
