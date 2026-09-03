@@ -133,12 +133,13 @@ attribute is deliberately empty.
 Four portraits, inlined as square base64 JPEGs at quality 84. **Target size is
 480px**, not 320: the largest display size is 227 CSS pixels, which is 454 device
 pixels on a 2x screen, and a 320px image gets upscaled there and looks soft. As of
-3 September 2026 Erik and Illia are at 480px from large originals; Chau and
-Anatole are still 320px and need re-exporting from larger originals. Chau's LinkedIn photo is 800px with
-a 220px face crop, so a better source photo is needed, not just a re-export.
-Anatole has his own original. They appear twice: in the cover screen (`.founder img`) and again in
-"Who we are" (`.person img`), so replacing a person means replacing both copies
-of that `data:` string.
+3 September 2026 Erik, Chau and Illia are at 480px. Erik and Illia come from large
+originals; Chau's source is a 1600px photo with a 333px face crop, so her tile is
+upscaled by about 1.4x and is a touch softer than those two. Anatole is still 320px
+and needs re-exporting from his original. Each portrait appears twice, in the
+cover screen (`.founder img`) and again in "Who we are" (`.person img`), so
+replacing a person means replacing both copies of that `data:` string, plus the
+copy in `og.html`.
 
 **They are framed to a common rule, not cropped by eye.** Each face was located
 with a detector, then the square was cut so the face box fills a set share of the
@@ -148,7 +149,8 @@ can say why. The current values: the face fills 55% of the frame at 46% height,
 except Erik (50%, 54.5%, because his hair sits well above the detector's box and
 a tighter crop clipped it). Illia's portrait was replaced on 3 September 2026
 with a 2500px studio photo and uses the default rule. Chau's was replaced the same
-day with her LinkedIn photo at her request, from an 800px source.
+day at her request with a wider version of her LinkedIn photo (1600 x 1200), also
+on the default rule.
 
 To add or swap one: locate the face, crop square to the same proportion, resize
 to 480px, save as JPEG quality 84, base64 it. Larger than 480 is wasted. The
