@@ -133,8 +133,8 @@ attribute is deliberately empty.
 Four portraits, inlined as square base64 JPEGs at quality 84. **Target size is
 480px**, not 320: the largest display size is 227 CSS pixels, which is 454 device
 pixels on a 2x screen, and a 320px image gets upscaled there and looks soft. As of
-3 September 2026 Erik and Illia are at 480px; Chau and Anatole are still 320px
-and need re-exporting from larger originals. Chau's LinkedIn photo is 800px with
+3 September 2026 Erik and Illia are at 480px from large originals; Chau and
+Anatole are still 320px and need re-exporting from larger originals. Chau's LinkedIn photo is 800px with
 a 220px face crop, so a better source photo is needed, not just a re-export.
 Anatole has his own original. They appear twice: in the cover screen (`.founder img`) and again in
 "Who we are" (`.person img`), so replacing a person means replacing both copies
@@ -146,10 +146,9 @@ frame and sits at a set height. Without this, one portrait's head can be 40%
 larger than another's in the same row, which reads as a mistake even when nobody
 can say why. The current values: the face fills 55% of the frame at 46% height,
 except Erik (50%, 54.5%, because his hair sits well above the detector's box and
-a tighter crop clipped it) and Illia (58%, 48.5%, face box nudged 18px right
-because the frontal detector sits left of centre on a three-quarter view).
-Chau's and Illia's portraits were replaced on 3 September 2026 with their
-LinkedIn photos at their request, both from 800px sources.
+a tighter crop clipped it). Illia's portrait was replaced on 3 September 2026
+with a 2500px studio photo and uses the default rule. Chau's was replaced the same
+day with her LinkedIn photo at her request, from an 800px source.
 
 To add or swap one: locate the face, crop square to the same proportion, resize
 to 480px, save as JPEG quality 84, base64 it. Larger than 480 is wasted. The
