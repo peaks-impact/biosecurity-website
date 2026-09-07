@@ -212,9 +212,20 @@ click shorter but goes stale after every event and has to be repointed by hand,
 so the calendar was chosen. If you ever switch back to a dated event link, search
 the file for `zurich-biosecurity-hub` and note the expiry in this README.
 
-A second, competing call to action was tried and removed. One button converts
-better than two. The contact address stays as a text link in Career advising and
-in the footer.
+## Contact routes
+
+Three, linked in this order of prominence:
+
+1. **Luma calendar**, `https://luma.com/zurich-biosecurity-hub`: the button, see
+   above.
+2. **"Introduce yourself" form**,
+   `https://airtable.com/apphuE6g3JDyct5L1/pagnomXiTyLYjOwrj/form`: a text link
+   in three places, under the Luma button in "Get in touch", in the Career
+   advising paragraph, and in the footer list "Elsewhere". Not in the navigation,
+   not a button. All three open in a new tab (`target="_blank" rel="noopener"`).
+   If the URL changes, search the file for `airtable.com`.
+3. **Mail**, `info@zurichbiosecurity.ch`: a text link in Career advising and in
+   the footer.
 
 ## Typography rules baked into the CSS
 
