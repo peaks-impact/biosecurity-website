@@ -9,8 +9,7 @@ What is in this repository is what gets served.
 |---|---|
 | `index.html` | The whole site. One self-contained file: styles in a `<style>` block, the hub logo as inline SVG, the programme marks and the four team portraits as base64 `data:` URIs. Nothing external except the Google Fonts stylesheet and the Luma iframe. |
 | `favicon.svg` | Petrol square with the reverse hub mark. |
-| `og-image.png` | 1200 x 630 link preview image, matching the cover screen: hub mark, wordmark, strapline, the four portraits. Rebuild it from `og.html` if the team changes. |
-| `og.html` | Source for `og-image.png`. Open at 1200 x 630 and screenshot it. Carries copies of the four portrait `data:` URIs, so update it when a portrait changes. |
+| `og-image.png` | 1200 x 630 link preview image, rebuilt 11 September 2026 on the light-field art direction: deep petrol ground, cool and warm light sources, hexagon mesh and grain, hub mark, name, strapline, the four portraits. This is what LinkedIn, WhatsApp, Slack and Google show when the site is shared. The source lives with Anatole; there is no generator in this repository any more. |
 | `.gitignore` | One line, `.DS_Store`, so macOS folder metadata never gets committed. |
 | `.nojekyll` | Stops GitHub Pages from running the content through Jekyll. |
 | `CNAME` | Created by GitHub when the custom domain is set in Settings, Pages. Do not delete. |
@@ -94,18 +93,59 @@ petrol `#12333B`, warm off-white `#F4F1EA`, burnt orange `#C8552A` (calls to
 action only), muted slate `#6E8C93`. IBM Plex Sans throughout, IBM Plex Mono for
 dates and sources. 8px spacing scale, hairline rules, no shadows, no gradients.
 
-Two agreed departures from the kit:
+Three agreed departures from the kit:
 
 1. **Rounded corners** on cards, panels, buttons and portraits (`--r: 14px`,
    `--r-sm: 8px`, buttons fully rounded). The kit calls for radius 0.
 2. **Secondary running text** (notes, source lines, meta lines) is petrol at 70%
    rather than slate. Slate on a light field is only 3.2:1, which fails WCAG AA
    at those sizes. Slate is kept for the uppercase micro-labels.
+3. **The dark bands are not flat petrol.** Since 11 September 2026 every
+   `.field--dark` section sits on a deeper base `#0D2830` with two soft light
+   sources and a film grain, see the next section. The kit says no gradients;
+   this is the one place where that rule is set aside.
 
 The hub logo is never rounded or altered. It is inlined as SVG `<symbol>`s at the
 top of `index.html`: `#mark`, `#mark-accent` (orange inner portal, used in the
 header and the footer) and `#mark-hairline` (thin, the watermark in the contact
 block). Stroke weights are fixed at 14 outer and 12 inner.
+
+## The light field on the dark bands
+
+Added 11 September 2026. Every `.field--dark` section carries a two-source light
+field instead of flat petrol: one cool source (`#6FD2E2`) and one warm source
+(`#FF9468`) as large soft radial gradients in `screen` blend mode over a deeper
+base, plus a film grain. It is pure CSS in the `<style>` block, using `::before`
+for the light and `::after` for the grain, so there is no extra markup and no
+extra request. The grain is an inlined SVG `feTurbulence` as a `data:` URI.
+
+Rules that hold it together:
+
+1. **The base is `#0D2830`, not the kit petrol `#12333B`.** On the flatter petrol
+   a warm light in `screen` mode turns brown and grey instead of staying
+   chromatic.
+2. **The sticky header keeps the flat base** and has its pseudo-elements
+   disabled. The cover is dark at its top edge, so the two meet without a step.
+   The header also re-asserts `position: sticky` in `.header.field--dark`:
+   the light-field block sets `position: relative` on `.field--dark` with equal
+   specificity later in the sheet, and without the re-assertion the header
+   scrolls away with the page.
+3. **Outside the cover the sources sit at roughly 40% and are pushed past the
+   edges**, so no running text crosses a bright core.
+
+**Contrast was measured, not eyeballed.** Every text run inside a dark band was
+checked against the field underneath it at its own font size and weight. All
+pass WCAG AA: the smallest margin is the cover wordmark at 3.45:1 against a 3.0
+requirement, and the tightest small-text run is the "Upcoming events" body copy
+at 4.65:1 against 4.5. **If you move a light source, re-run that check.**
+Shifting the cool source up or down by ten percent was enough to push the
+founder captions from 11.7:1 to 3.5:1, which fails.
+
+Below 820px the cover swings its two sources to a diagonal and enlarges them.
+At the desktop placement they fall off the sides of a phone and the cover reads
+as flat again.
+
+The field is removed in `@media print`, where the sections fall back to `#12333B`.
 
 ## Programme marks
 
@@ -138,8 +178,8 @@ originals; Chau's source is a 1600px photo with a 333px face crop, so her tile i
 upscaled by about 1.4x and is a touch softer than those two. Anatole is still 320px
 and needs re-exporting from his original. Each portrait appears twice, in the
 cover screen (`.founder img`) and again in "Who we are" (`.person img`), so
-replacing a person means replacing both copies of that `data:` string, plus the
-copy in `og.html`.
+replacing a person means replacing both copies of that `data:` string, and
+asking Anatole to rebuild `og-image.png`.
 
 **They are framed to a common rule, not cropped by eye.** Each face was located
 with a detector, then the square was cut so the face box fills a set share of the

@@ -116,6 +116,103 @@ a:hover { color: var(--orange); }
 .note { font-size: 15px; opacity: 0.7; max-width: 100%; text-wrap: pretty; }
 .meta { font-size: 14px; opacity: 0.7; }
 
+/* ==========================================================================
+   Light field on the dark sections
+   Zurich Biosecurity Hub, September 2026
+
+   Replaces the flat petrol on every dark band with a two-source light field:
+   one cool source and one warm source drifting across a deeper petrol base,
+   plus a fine film grain. Pure CSS, no markup change, no extra file to load.
+
+   Two rules make it work and should not be relaxed:
+   1. The base is #0D2830, deeper than the kit petrol #12333B. On the flatter
+      petrol a warm light in screen mode turns brown and grey instead of
+      staying chromatic.
+   2. Outside the cover the sources sit at reduced opacity and are pushed to
+      the edges, so running text never crosses a bright core.
+   ========================================================================== */
+
+.field--dark {
+  position: relative;
+  isolation: isolate;
+  background: #0D2830;
+  overflow: hidden;
+}
+
+/* the two light sources */
+.field--dark::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -2;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* the grain, an inlined SVG turbulence, no request */
+.field--dark::after {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  opacity: .14;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+}
+
+/* the sticky bar keeps the flat base: the cover is dark at its top edge,
+   so the two meet without a visible step. It also has to re-assert sticky:
+   .field--dark above sets position: relative with equal specificity and
+   later in the sheet, which would otherwise win. */
+.header.field--dark::before,
+.header.field--dark::after { display: none; }
+.header.field--dark { position: sticky; overflow: visible; }
+
+/* ---------- the cover, full strength, cool left and warm right ---------- */
+.hero.field--dark::before {
+  background-image:
+    radial-gradient(58% 72% at  -8% 50%, rgba(111,210,226,.86) 0%, rgba(111,210,226,0) 70%),
+    radial-gradient(62% 76% at 108% 50%, rgba(255,148,104,.94) 0%, rgba(255,148,104,0) 70%),
+    radial-gradient(38% 46% at   2% 50%, rgba(111,210,226,.26) 0%, rgba(111,210,226,0) 72%),
+    radial-gradient(42% 50% at  98% 50%, rgba(255,148,104,.28) 0%, rgba(255,148,104,0) 72%);
+}
+/* narrow screens: the sources have to grow and swing to the diagonal,
+   otherwise they fall off the sides and the cover reads as flat again */
+@media (max-width: 820px) {
+  .hero.field--dark::before {
+    background-image:
+      radial-gradient(96% 44% at  10% 22%, rgba(111,210,226,.92) 0%, rgba(111,210,226,0) 70%),
+      radial-gradient(98% 46% at  92% 80%, rgba(255,148,104,.96) 0%, rgba(255,148,104,0) 70%);
+  }
+}
+
+/* ---------- content bands, half strength, sources pushed to the edges ---------- */
+#who.field--dark::before {
+  background-image:
+    radial-gradient(50% 76% at 102% 34%, rgba(111,210,226,.40) 0%, rgba(111,210,226,0) 74%),
+    radial-gradient(54% 82% at  -2% 92%, rgba(255,148,104,.42) 0%, rgba(255,148,104,0) 74%);
+}
+#events.field--dark::before {
+  background-image:
+    radial-gradient(50% 78% at  -2% 90%, rgba(111,210,226,.42) 0%, rgba(111,210,226,0) 74%),
+    radial-gradient(54% 84% at 101%  8%, rgba(255,148,104,.42) 0%, rgba(255,148,104,0) 74%);
+}
+#contact.field--dark::before {
+  background-image:
+    radial-gradient(46% 96% at   2% 96%, rgba(111,210,226,.34) 0%, rgba(111,210,226,0) 74%),
+    radial-gradient(50% 100% at 99%  6%, rgba(255,148,104,.34) 0%, rgba(255,148,104,0) 74%);
+}
+.footer.field--dark::before {
+  background-image:
+    radial-gradient(70% 150% at  88% 40%, rgba(255,148,104,.34) 0%, rgba(255,148,104,0) 74%),
+    radial-gradient(66% 140% at   8% 60%, rgba(111,210,226,.34) 0%, rgba(111,210,226,0) 74%);
+}
+
+/* the field is decoration: it goes away when the user asks for less motion
+   and, more importantly, when the page is printed */
+@media print {
+  .field--dark::before, .field--dark::after { display: none; }
+  .field--dark { background: #12333B; }
+}
+
 /* ---------- hero, a full-screen cover ---------- */
 /* svh keeps mobile browser chrome from pushing the button off screen */
 .hero {
