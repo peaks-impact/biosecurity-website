@@ -90,6 +90,16 @@ a:hover { color: var(--orange); }
 .field--dark .lockup, .field--dark .lockup:hover { color: var(--paper); }
 .footer .lockup__mark { width: 30px; height: 30px; }
 
+/* ---------- hiring notice (remove with the job page) ---------- */
+.notice { display: block; background: #0D2830; color: var(--paper); text-decoration: none; border-bottom: 1px solid rgba(244,241,234,0.14); }
+.notice:hover { color: var(--paper); }
+.notice__inner { display: flex; align-items: center; gap: 12px; padding: 10px var(--s5); font-size: 13.5px; line-height: 1.4; }
+.notice__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); flex: none; }
+.notice__text { flex: 1 1 auto; opacity: 0.9; }
+.notice__cta { flex: none; color: var(--orange); font-weight: 600; white-space: nowrap; }
+.notice:hover .notice__cta { text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 4px; }
+@media (max-width: 760px) { .notice__inner { font-size: 13px; gap: 10px; } .notice__more { display: none; } }
+
 /* ---------- header ---------- */
 .header { position: sticky; top: 0; z-index: 10; }
 .header__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--s4); padding: 15px 0; }
@@ -380,6 +390,14 @@ a:hover { color: var(--orange); }
 </svg>
 
 <a class="skip" href="#main">Skip to content</a>
+
+<a class="notice" href="/jobs/programme-manager/">
+  <span class="wrap notice__inner">
+    <span class="notice__dot" aria-hidden="true"></span>
+    <span class="notice__text"><strong>We are hiring:</strong> Programme Manager, full-time, Zurich.<span class="notice__more"> Apply by 8&nbsp;November&nbsp;2026.</span></span>
+    <span class="notice__cta">See the role</span>
+  </span>
+</a>
 
 <header class="header field--dark">
   <div class="wrap header__inner">

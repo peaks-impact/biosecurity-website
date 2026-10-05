@@ -8,6 +8,7 @@ What is in this repository is what gets served.
 | File | Purpose |
 |---|---|
 | `index.html` | The whole site. One self-contained file: styles in a `<style>` block, the hub logo as inline SVG, the programme marks and the four team portraits as base64 `data:` URIs. Nothing external except the Google Fonts stylesheet and the Luma iframe. |
+| `jobs/programme-manager/index.html` | The Programme Manager job page, served at `/jobs/programme-manager/`. Self-contained like the main page: it carries its own copy of the `<style>` block and the logo symbols, with a small block of job-page rules appended at the end of the styles. No images. Deadline on the page: Sunday 8 November 2026. |
 | `favicon.svg` | Petrol square with the reverse hub mark. |
 | `og-image.png` | 1200 x 630 link preview image, rebuilt 11 September 2026 on the light-field art direction: deep petrol ground, cool and warm light sources, hexagon mesh and grain, hub mark, name, strapline, the four portraits. This is what LinkedIn, WhatsApp, Slack and Google show when the site is shared. The source lives with Anatole; there is no generator in this repository any more. |
 | `.gitignore` | One line, `.DS_Store`, so macOS folder metadata never gets committed. |
@@ -19,7 +20,13 @@ What is in this repository is what gets served.
 opened or shared on its own: unstyled text, then missing images. If the site
 grows to a second page, split the CSS out then, not before.
 
-The file is about 170 KB, most of it the nine inlined images. That is light for
+The job page is that second page, and the CSS is still not split out: the page
+is live for a few weeks and then comes down, and the copy is simpler than a
+shared stylesheet for that span. A style change that should apply to both
+pages has to be made in both files until then. Search both for the token you
+are changing.
+
+The main file is about 300 KB, most of it the nine inlined images. That is light for
 a page with four photographs and it costs one request instead of ten.
 
 ## Editing
@@ -41,6 +48,7 @@ Fields alternate per section, starting dark.
 
 | Section | Anchor | Field |
 |---|---|---|
+| Hiring notice, one line above the header, links to the job page | | deep petrol `#0D2830` |
 | Header, sticky | | **petrol `#12333B`** |
 | Cover screen | `#top` | **petrol** |
 | What we offer, five rows | `#offer` | paper `#F4F1EA` |
@@ -61,6 +69,25 @@ a few rules carry a `.field--dark .stat …` override to beat the dark link and
 text colours. Same for the sticky header: it takes its background from
 `.field--dark`, and setting `background` on `.header` as well would silently win
 on source order and make the light-on-light lockup invisible.
+
+### Job page, `/jobs/programme-manager/`
+
+Header (same lockup and navigation, links point back to the main page as
+`/#offer`, `/#who`, `/#events`, `/#programmes`; the button reads "Apply" and
+opens the application form), then a dark hero with eyebrow, title, one-paragraph
+lede, a mono meta line (place, hours, start, deadline) and the Apply button,
+then one long paper column with the job description under `h2` headings:
+Summary, About the Zurich Biosecurity Hub, About the role (a definition list of
+facts), Key responsibilities, Qualifications, Compensation and benefits, Hiring
+process, a closing Apply button. Footer identical to the main page.
+
+The main page links to it from the hiring notice: a one-line band above the
+header, the whole band is the link. Orange dot, "We are hiring: Programme
+Manager, full-time, Zurich. Apply by 8 November 2026." and "See the role" at
+the right edge. Under 760px the deadline is hidden so the line stays short. The
+band is not sticky; it scrolls away with the cover. Its rules sit under
+`/* hiring notice */` in the CSS, and the markup is the `<a class="notice">`
+block directly before `<header>`. Remove both together with the job page.
 
 ## The cover screen
 
@@ -267,6 +294,14 @@ Three, linked in this order of prominence:
 3. **Mail**, `info@zurichbiosecurity.ch`: a text link in Career advising and in
    the footer.
 
+The job page has its own two routes and does not use the three above:
+the **application form**,
+`https://airtable.com/appk7BCyAZfS5LDl7/pagXsG4Fo3ZFDYYiZ/form` (header button,
+hero button, "Apply here" link in the Summary, closing button), the
+**referral form**, `https://airtable.com/appk7BCyAZfS5LDl7/pageNcsWKqrDJHjMV/form`
+(text link in the Summary and under the closing button), and
+`hiring@zurichbiosecurity.ch` for questions. Both forms open in a new tab.
+
 ## Typography rules baked into the CSS
 
 The body copy is not capped at a reading measure. On a 1240px container that
@@ -299,7 +334,10 @@ across two lines inside the narrow stat cards.
 - ETH Zurich is named only for the lecture series, which does take place there.
   The Hub itself is not branded as an ETH project, and no institutional logos
   appear on the site, because that would imply an endorsement that does not exist.
-- Contact is always `info@zurichbiosecurity.ch`, never a personal address.
+- Contact is always `info@zurichbiosecurity.ch`, never a personal address. The
+  job page uses `hiring@zurichbiosecurity.ch` and, as the only place on the
+  site, names the Director and the fiscal host, because a job description has
+  to say who the employer is.
 
 ## Accessibility
 
@@ -322,7 +360,11 @@ orphan word, and the page never scrolls horizontally.
 ## Open
 
 - `info@zurichbiosecurity.ch` needs a mailbox or a forward. Until then every
-  contact link on the site goes nowhere.
+  contact link on the site goes nowhere. Same for `hiring@zurichbiosecurity.ch`
+  on the job page.
+- After the Programme Manager role is filled: remove the hiring notice from
+  `index.html` and remove the job page (or replace it with a short "position
+  filled" note so shared links do not 404).
 - Room for the lecture series ("room to be announced").
 - The events section carries one hand-written line about the Swiss AI Safety
   Days (7 and 8 November 2026, ETH Zurich). It is the only event on the page that
